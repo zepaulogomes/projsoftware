@@ -1,44 +1,72 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  bool _toLogin = true;
+  bool toRegister = false;
   @override
   Widget build(BuildContext context) {
-    return _buildHomeScreen();
+    return _buildHomeScreen(context);
   }
 
-  Widget _buildHomeScreen() {
+  Widget _buildHomeScreen(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Container(
       margin: EdgeInsets.fromLTRB(15, 10, 15, 20),
-      child: Column(
+      child: ListView(
         children: <Widget>[
-          Spacer(
-            flex: 4,
+          SizedBox(
+            height: height * 0.15,
           ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 20.0),
-            child: Row(
-              children: <Widget>[
-                // Text(
-                //   "ESTUD",
-                //   style: TextStyle(
-                //       fontFamily: 'RobotoMono-Light',
-                //       fontWeight: FontWeight.w100,
-                //       fontSize: 50),
-                // ),
-                // Text(
-                //   "UFF",
-                //   style: TextStyle(
-                //       fontFamily: 'RobotoMono-Bold',
-                //       fontWeight: FontWeight.bold,
-                //       fontSize: 50),
-                // ),
-                Image(
-                  image: AssetImage(
-                      'assets/images/logo.png'),
-                )
-              ],
-            ),
+          Row(
+            children: <Widget>[
+              Image(
+                image: AssetImage('assets/images/logo.png'),
+              )
+            ],
+          ),
+          // Menu
+          Row(
+            children: <Widget>[
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _toLogin = true;
+                  });
+                  debugPrint("Login:" + _toLogin.toString());
+                },
+                child: (_toLogin
+                    ? _buildLoginSelected()
+                    : _buildLoginDiselected()),
+              ),
+              SizedBox(
+                width: 20,
+              ),
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _toLogin = false;
+                  });
+                  debugPrint("Login:" + _toLogin.toString());
+                },
+                child: Container(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 5.0),
+                  child: Text(
+                    'Registro',
+                    style: TextStyle(fontSize: 25, color: Colors.grey),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 20,
           ),
           TextField(
             decoration: InputDecoration(
@@ -49,21 +77,21 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
-            child: TextField(
-              obscureText: true,
-              decoration: InputDecoration(
-                suffixIcon: Icon(Icons.lock_outline),
-                labelText: 'Insira sua senha',
-                border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.red, width: 5.0),
-                ),
+          SizedBox(
+            height: 20,
+          ),
+          TextField(
+            obscureText: true,
+            decoration: InputDecoration(
+              suffixIcon: Icon(Icons.lock_outline),
+              labelText: 'Insira sua senha',
+              border: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.red, width: 5.0),
               ),
             ),
           ),
-          Spacer(
-            flex: 1,
+          SizedBox(
+            height: 20,
           ),
           SizedBox(
             width: double.infinity,
@@ -94,11 +122,65 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
-          Spacer(
-            flex: 4,
-          ),
         ],
       ),
     );
   }
+
+  Widget _buildLoginSelected() {
+    return Container(
+      padding: const EdgeInsets.fromLTRB(0, 0, 5.0, 5.0),
+      decoration: const BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            width: 3.0,
+            color: Color.fromRGBO(33, 102, 204, 1),
+          ),
+        ),
+      ),
+      child: Text(
+        'Login',
+        style: TextStyle(fontSize: 25),
+      ),
+    );
+  }
+
+  Widget _buildLoginDiselected() {
+    return Container(
+      padding: const EdgeInsets.fromLTRB(0, 0, 5.0, 5.0),
+      child: Text(
+        'Login',
+        style: TextStyle(fontSize: 25, color: Colors.grey),
+      ),
+    );
+  }
+
+  Widget _buildRegisterSelected() {
+    return Container(
+      padding: const EdgeInsets.fromLTRB(0, 0, 5.0, 5.0),
+      decoration: const BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            width: 3.0,
+            color: Color.fromRGBO(33, 102, 204, 1),
+          ),
+        ),
+      ),
+      child: Text(
+        'Registro',
+        style: TextStyle(fontSize: 25),
+      ),
+    );
+  }
+
+  Widget _buildRegisterDiselected() {
+    return Container(
+      padding: const EdgeInsets.fromLTRB(0, 0, 5.0, 5.0),
+      child: Text(
+        'Registro',
+        style: TextStyle(fontSize: 25, color: Colors.grey),
+      ),
+    );
+  }
+
 }
