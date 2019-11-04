@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:projsoftware/components/UI/text_field.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -68,28 +69,11 @@ class _HomeScreenState extends State<HomeScreen> {
           SizedBox(
             height: 20,
           ),
-          TextField(
-            decoration: InputDecoration(
-              suffixIcon: Icon(Icons.email),
-              labelText: 'Insira seu e-mail',
-              border: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.red, width: 5.0),
-              ),
-            ),
-          ),
+          TextFieldInput.emai("Insira seu e-mail"),
           SizedBox(
             height: 20,
           ),
-          TextField(
-            obscureText: true,
-            decoration: InputDecoration(
-              suffixIcon: Icon(Icons.lock_outline),
-              labelText: 'Insira sua senha',
-              border: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.red, width: 5.0),
-              ),
-            ),
-          ),
+          TextFieldInput.senha("Insira sua senha"),
           SizedBox(
             height: 20,
           ),
@@ -126,6 +110,9 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
+  Widget _buildLoginForm() {}
+  Widget _buildRegisterForm() {}
 
   Widget _buildLoginSelected() {
     return Container(
@@ -182,5 +169,4 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-
 }
