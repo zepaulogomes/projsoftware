@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:projsoftware/components/UI/text_field.dart';
+import 'package:projsoftware/screens/quiz_screen.dart';
+import 'package:projsoftware/values/strings.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -32,87 +34,177 @@ class _HomeScreenState extends State<HomeScreen> {
               )
             ],
           ),
-          // Menu
-          Row(
-            children: <Widget>[
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    _toLogin = true;
-                  });
-                  debugPrint("Login:" + _toLogin.toString());
-                },
-                child: (_toLogin
-                    ? _buildLoginSelected()
-                    : _buildLoginDiselected()),
-              ),
-              SizedBox(
-                width: 20,
-              ),
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    _toLogin = false;
-                  });
-                  debugPrint("Login:" + _toLogin.toString());
-                },
-                child: Container(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 5.0),
-                  child: Text(
-                    'Registro',
-                    style: TextStyle(fontSize: 25, color: Colors.grey),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          TextFieldInput.emai("Insira seu e-mail"),
-          SizedBox(
-            height: 20,
-          ),
-          TextFieldInput.senha("Insira sua senha"),
-          SizedBox(
-            height: 20,
-          ),
-          SizedBox(
-            width: double.infinity,
-            child: FlatButton(
-              padding: EdgeInsets.fromLTRB(0, 15.0, 0, 15.0),
-              color: Color.fromRGBO(33, 102, 204, 1),
-              textColor: Colors.white,
-              disabledColor: Colors.grey,
-              disabledTextColor: Colors.black,
-              splashColor: Colors.blueAccent,
-              shape: new RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(5.0)),
-              onPressed: () {
-                /*...*/
-              },
-              child: Text(
-                "ENTRAR",
-                style: TextStyle(
-                  fontSize: 20.0,
-                  shadows: [
-                    Shadow(
-                      blurRadius: 5.0,
-                      color: Colors.grey,
-                      offset: Offset(2.0, 2.0),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
+          (_toLogin ? _buildLogin() : _buildRegister()),
         ],
       ),
     );
   }
 
-  Widget _buildLoginForm() {}
-  Widget _buildRegisterForm() {}
+  Widget _buildLogin() {
+    return Column(
+      children: <Widget>[
+        Row(
+          children: <Widget>[
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  _toLogin = true;
+                });
+              },
+              child:
+                  (_toLogin ? _buildLoginSelected() : _buildLoginDiselected()),
+            ),
+            SizedBox(
+              width: 20,
+            ),
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  _toLogin = false;
+                });
+              },
+              child: Container(
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 5.0),
+                child: (_toLogin
+                    ? _buildRegisterDiselected()
+                    : _buildRegisterSelected()),
+              ),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        TextFieldInput.email(StringValues.EMAIL_PLACEHOLDER),
+        SizedBox(
+          height: 20,
+        ),
+        TextFieldInput.senha(StringValues.PASSWORD_PLACEHOLDER),
+        SizedBox(
+          height: 20,
+        ),
+        SizedBox(
+          width: double.infinity,
+          child: FlatButton(
+            padding: EdgeInsets.fromLTRB(0, 15.0, 0, 15.0),
+            color: Color.fromRGBO(33, 102, 204, 1),
+            textColor: Colors.white,
+            disabledColor: Colors.grey,
+            disabledTextColor: Colors.black,
+            splashColor: Colors.blueAccent,
+            shape: new RoundedRectangleBorder(
+                borderRadius: new BorderRadius.circular(5.0)),
+            onPressed: () {
+              /*...*/
+            },
+            child: Text(
+              StringValues.LOGIN_BUTTON_TITLE,
+              style: TextStyle(
+                fontSize: 20.0,
+                shadows: [
+                  Shadow(
+                    blurRadius: 5.0,
+                    color: Colors.grey,
+                    offset: Offset(2.0, 2.0),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildRegister() {
+    return Column(
+      children: <Widget>[
+        Row(
+          children: <Widget>[
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  _toLogin = true;
+                });
+              },
+              child:
+                  (_toLogin ? _buildLoginSelected() : _buildLoginDiselected()),
+            ),
+            SizedBox(
+              width: 20,
+            ),
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  _toLogin = false;
+                });
+                debugPrint("Login:" + _toLogin.toString());
+              },
+              child: Container(
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 5.0),
+                child: (_toLogin
+                    ? _buildRegisterDiselected()
+                    : _buildRegisterSelected()),
+              ),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        TextFieldInput.email(StringValues.EMAIL_PLACEHOLDER),
+        SizedBox(
+          height: 20,
+        ),
+        TextFieldInput.senha(StringValues.PASSWORD_PLACEHOLDER),
+        SizedBox(
+          height: 20,
+        ),
+        TextFieldInput.texto(
+            StringValues.COURSE_PLACEHOLDER, Icons.import_contacts),
+        SizedBox(
+          height: 20,
+        ),
+        TextFieldInput.texto(
+            StringValues.LECTURES_PLACEHOLDER, Icons.arrow_drop_down),
+        SizedBox(
+          height: 20,
+        ),
+        SizedBox(
+          width: double.infinity,
+          child: FlatButton(
+            padding: EdgeInsets.fromLTRB(0, 15.0, 0, 15.0),
+            color: Color.fromRGBO(33, 102, 204, 1),
+            textColor: Colors.white,
+            disabledColor: Colors.grey,
+            disabledTextColor: Colors.black,
+            splashColor: Colors.blueAccent,
+            shape: new RoundedRectangleBorder(
+                borderRadius: new BorderRadius.circular(5.0)),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => QuizScreen()),
+              );
+            },
+            child: Text(
+              StringValues.REGISTER_BUTTON_TITLE,
+              style: TextStyle(
+                fontSize: 20.0,
+                shadows: [
+                  Shadow(
+                    blurRadius: 5.0,
+                    color: Colors.grey,
+                    offset: Offset(2.0, 2.0),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
 
   Widget _buildLoginSelected() {
     return Container(
@@ -126,7 +218,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       child: Text(
-        'Login',
+        StringValues.LOGIN_TITLE,
         style: TextStyle(fontSize: 25),
       ),
     );
@@ -136,7 +228,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Container(
       padding: const EdgeInsets.fromLTRB(0, 0, 5.0, 5.0),
       child: Text(
-        'Login',
+        StringValues.LOGIN_TITLE,
         style: TextStyle(fontSize: 25, color: Colors.grey),
       ),
     );
@@ -154,7 +246,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       child: Text(
-        'Registro',
+        StringValues.REGISTER_TITLE,
         style: TextStyle(fontSize: 25),
       ),
     );
@@ -164,7 +256,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Container(
       padding: const EdgeInsets.fromLTRB(0, 0, 5.0, 5.0),
       child: Text(
-        'Registro',
+        StringValues.REGISTER_TITLE,
         style: TextStyle(fontSize: 25, color: Colors.grey),
       ),
     );

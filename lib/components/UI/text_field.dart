@@ -18,11 +18,11 @@ class TextFieldInput extends StatefulWidget {
         this._icon = Icons.lock_outline,
         this._password = true,
         this._keyboardType = TextInputType.text;
-  TextFieldInput.emai(String placeHolder)
+  TextFieldInput.email(String placeHolder)
       : this._placeHolder = placeHolder,
         this._icon = Icons.mail_outline,
         this._password = false,
-
+  
         this._keyboardType = TextInputType.emailAddress;
 
   @override
