@@ -24,7 +24,37 @@ class QuizScreen extends StatelessWidget {
                 height: height * 0.08,
                 width: width,
                 color: Colors.white,
-                decoration: ,
+                child: Row(
+                  children: <Widget>[
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(15.0, 0, 0, 0),
+                        child: Icon(
+                          Icons.keyboard_arrow_left,
+                          color: Colors.grey,
+                          size: 30.0,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                        child: Text(
+                          "Questionário",
+                          style: TextStyle(
+                            fontSize: 22.0,
+                            color: Colors.black,
+                            shadows: [
+                              Shadow(
+                                blurRadius: 5.0,
+                                color: Colors.grey,
+                                offset: Offset(2.0, 2.0),
+                              ),
+                            ],
+                          ),
+                        )),
+                  ],
+                ),
               )
             ],
           ),
