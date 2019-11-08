@@ -23,7 +23,17 @@ class QuizScreen extends StatelessWidget {
               Container(
                 height: height * 0.08,
                 width: width,
-                color: Colors.white,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.8),
+                      spreadRadius: 2,
+                      blurRadius: 5,
+                      offset: Offset(0, 7), // changes position of shadow
+                    ),
+                  ],
+                ),
                 child: Row(
                   children: <Widget>[
                     Align(
