@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
 import 'package:projsoftware/components/UI/text_field.dart';
 import 'package:projsoftware/screens/quiz_screen.dart';
 import 'package:projsoftware/values/strings.dart';
@@ -20,22 +20,24 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildHomeScreen(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return Container(
-      margin: EdgeInsets.fromLTRB(15, 10, 15, 20),
-      child: ListView(
-        children: <Widget>[
-          SizedBox(
-            height: height * 0.15,
-          ),
-          Row(
-            children: <Widget>[
-              Image(
-                image: AssetImage('assets/images/logo.png'),
-              )
-            ],
-          ),
-          (_toLogin ? _buildLogin() : _buildRegister()),
-        ],
+    return Scaffold(
+      body: Container(
+        margin: EdgeInsets.fromLTRB(15, 10, 15, 20),
+        child: ListView(
+          children: <Widget>[
+            SizedBox(
+              height: height * 0.15,
+            ),
+            Row(
+              children: <Widget>[
+                Image(
+                  image: AssetImage('assets/images/logo.png'),
+                )
+              ],
+            ),
+            (_toLogin ? _buildLogin() : _buildRegister()),
+          ],
+        ),
       ),
     );
   }
@@ -100,6 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Text(
               StringValues.LOGIN_BUTTON_TITLE,
               style: TextStyle(
+                fontFamily: 'Rubik',
                 fontSize: 20.0,
                 shadows: [
                   Shadow(

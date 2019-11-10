@@ -38,7 +38,7 @@ class _TextFieldInputState extends State<TextFieldInput> {
         suffixIcon: Icon(widget._icon),
         labelText: widget._placeHolder,
         border: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.red, width: 5.0),
+          borderSide: BorderSide(width: 5.0),
         ),
       ),
     );

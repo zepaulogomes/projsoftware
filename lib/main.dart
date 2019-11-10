@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projsoftware/screens/home_screen.dart';
+import 'package:projsoftware/values/colors.dart';
 
 void main() => runApp(MyApp());
 
@@ -9,7 +10,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        appBarTheme: AppBarTheme(
+          color: Colors.white,
+          iconTheme: IconThemeData(color: ColorValues.grey),
+        ),
+        textTheme: TextTheme(
+          body1: TextStyle(fontFamily: 'OpenSans'),
+        ),
       ),
       home: MyHomePage(),
     );
@@ -17,14 +24,8 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // appBar: AppBar(
-      //   title: Text("EstudUFF"),
-      // ),
-      body: HomeScreen(),
-    );
+    return HomeScreen();
   }
 }
