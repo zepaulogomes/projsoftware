@@ -196,13 +196,22 @@ class _QuizScreenState extends State<QuizScreen> {
       _showQuizResult(profile);
     } else {
       SnackBar snackBar = new SnackBar(
-        content: Text(
-          "Preencha todos os campos",
-          style: TextStyle(fontSize: 20),
+        content: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            // Icon(Icons.warning),
+            Icon(Icons.error_outline),
+            SizedBox(width: 5,),
+            Text(
+              StringValues.ERROR_MESSAGE,
+              style: TextStyle(fontSize: 20, color: Colors.white,),
+            ),
+          ],
         ),
         duration: Duration(
           seconds: 3,
         ),
+        backgroundColor: Colors.red,
       );
       _scaffoldKey.currentState.showSnackBar(snackBar);
       debugPrint("Null");

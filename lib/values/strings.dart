@@ -28,11 +28,5 @@ class StringValues {
     'Concordo parcialmente',
     'Concordo totalmente',
   ];
-  static final TOTALLY_DISAGREE_OPTION = 'Discordo totalmente';
-  static final PARCIALLY_DISAGREE_OPTION = 'Discordo parcialmente';
-  static final INDIFFERENTE_OPTION = 'Indiferente';
-  static final PARCIALLY_AGREE_OPTION = 'Concordo parcialmente';
-  static final TOTALLY_AGREE_OPTION = 'Concordo totalmente';
-  static final ERROR_MESSAGE =
-      "Por favor, avalie todas as afirmações para finalizar o questionário";
+  static final ERROR_MESSAGE = 'Preencha todos os campos';
 }
