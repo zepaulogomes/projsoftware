@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:projsoftware/components/UI/text_field.dart';
+import 'package:projsoftware/components/UI/profile_dialog.dart';
 
 import 'package:projsoftware/values/strings.dart';
 import 'package:projsoftware/values/colors.dart';
@@ -11,12 +11,13 @@ class QuizScreen extends StatefulWidget {
 }
 
 class _QuizScreenState extends State<QuizScreen> {
-  // QuizAnswerOption _dropDownValue;
   int _quiet, _privacy, _behavior;
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: _buildAppBar(context),
       body: _buildHomeScreen(context),
     );
@@ -71,8 +72,7 @@ class _QuizScreenState extends State<QuizScreen> {
             icon: Icon(Icons.arrow_drop_down),
             onChanged: (String valor) {
               setState(() {
-                _quiet =
-                    StringValues.QUIZ_ANSWERS_OPTIONS.indexOf(valor);
+                _quiet = StringValues.QUIZ_ANSWERS_OPTIONS.indexOf(valor);
               });
             },
             items: StringValues.QUIZ_ANSWERS_OPTIONS
@@ -105,8 +105,7 @@ class _QuizScreenState extends State<QuizScreen> {
             icon: Icon(Icons.arrow_drop_down),
             onChanged: (String valor) {
               setState(() {
-                _privacy =
-                    StringValues.QUIZ_ANSWERS_OPTIONS.indexOf(valor);
+                _privacy = StringValues.QUIZ_ANSWERS_OPTIONS.indexOf(valor);
               });
             },
             items: StringValues.QUIZ_ANSWERS_OPTIONS
@@ -140,8 +139,7 @@ class _QuizScreenState extends State<QuizScreen> {
             icon: Icon(Icons.arrow_drop_down),
             onChanged: (String valor) {
               setState(() {
-                _behavior =
-                    StringValues.QUIZ_ANSWERS_OPTIONS.indexOf(valor);
+                _behavior = StringValues.QUIZ_ANSWERS_OPTIONS.indexOf(valor);
               });
             },
             items: StringValues.QUIZ_ANSWERS_OPTIONS
@@ -192,15 +190,47 @@ class _QuizScreenState extends State<QuizScreen> {
   }
 
   void _calculateProfile() {
-    int profile = _quiet + _privacy + _behavior;
-    if (profile < 5){
-      debugPrint("Da galera");
-    } else if (profile >= 5 && profile <= 7){
-      debugPrint("Não tem tempo ruim");
-    } else if (profile > 7){
-      debugPrint("Lobo solitário");
-    } else{
-      debugPrint("Deu ruim!");
+    int profile;
+    if (_quiet != null && _privacy != null && _behavior != null) {
+      profile = _quiet + _privacy + _behavior;
+      _showQuizResult(profile);
+    } else {
+      SnackBar snackBar = new SnackBar(
+        content: Text(
+          "Preencha todos os campos",
+          style: TextStyle(fontSize: 20),
+        ),
+        duration: Duration(
+          seconds: 3,
+        ),
+      );
+      _scaffoldKey.currentState.showSnackBar(snackBar);
+      debugPrint("Null");
+    }
+  }
+
+  void _showQuizResult(int profile) {
+    if (profile < 5) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return CustomDialog.daGalera();
+        },
+      );
+    } else if (profile >= 5 && profile <= 7) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return CustomDialog.semTempoRuim();
+        },
+      );
+    } else if (profile > 7) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return CustomDialog.loboSolitario();
+        },
+      );
     }
   }
 }
