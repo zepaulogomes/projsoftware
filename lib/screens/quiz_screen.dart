@@ -5,7 +5,15 @@ import 'package:projsoftware/components/UI/text_field.dart';
 import 'package:projsoftware/values/strings.dart';
 import 'package:projsoftware/values/colors.dart';
 
-class QuizScreen extends StatelessWidget {
+class QuizScreen extends StatefulWidget {
+  @override
+  _QuizScreenState createState() => _QuizScreenState();
+}
+
+class _QuizScreenState extends State<QuizScreen> {
+  // QuizAnswerOption _dropDownValue;
+  int _quiet, _privacy, _behavior;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,7 +63,26 @@ class QuizScreen extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
-          TextFieldInput.texto(StringValues.PLACEHOLDER_OPTION, Icons.arrow_drop_down),
+          DropdownButton<String>(
+            hint: Text(StringValues.PLACEHOLDER_OPTION),
+            value: _quiet == null
+                ? null
+                : StringValues.QUIZ_ANSWERS_OPTIONS[_quiet],
+            icon: Icon(Icons.arrow_drop_down),
+            onChanged: (String valor) {
+              setState(() {
+                _quiet =
+                    StringValues.QUIZ_ANSWERS_OPTIONS.indexOf(valor);
+              });
+            },
+            items: StringValues.QUIZ_ANSWERS_OPTIONS
+                .map<DropdownMenuItem<String>>((String valor) {
+              return DropdownMenuItem<String>(
+                value: valor,
+                child: Text(valor),
+              );
+            }).toList(),
+          ),
           SizedBox(
             height: 30,
           ),
@@ -70,7 +97,26 @@ class QuizScreen extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
-          TextFieldInput.texto(StringValues.PLACEHOLDER_OPTION, Icons.arrow_drop_down),
+          DropdownButton<String>(
+            hint: Text(StringValues.PLACEHOLDER_OPTION),
+            value: _privacy == null
+                ? null
+                : StringValues.QUIZ_ANSWERS_OPTIONS[_privacy],
+            icon: Icon(Icons.arrow_drop_down),
+            onChanged: (String valor) {
+              setState(() {
+                _privacy =
+                    StringValues.QUIZ_ANSWERS_OPTIONS.indexOf(valor);
+              });
+            },
+            items: StringValues.QUIZ_ANSWERS_OPTIONS
+                .map<DropdownMenuItem<String>>((String valor) {
+              return DropdownMenuItem<String>(
+                value: valor,
+                child: Text(valor),
+              );
+            }).toList(),
+          ),
           SizedBox(
             height: 30,
           ),
@@ -85,7 +131,27 @@ class QuizScreen extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
-          TextFieldInput.texto(StringValues.PLACEHOLDER_OPTION, Icons.arrow_drop_down),
+          // TextFieldInput.texto(StringValues.PLACEHOLDER_OPTION, Icons.arrow_drop_down),
+          DropdownButton<String>(
+            hint: Text(StringValues.PLACEHOLDER_OPTION),
+            value: _behavior == null
+                ? null
+                : StringValues.QUIZ_ANSWERS_OPTIONS[_behavior],
+            icon: Icon(Icons.arrow_drop_down),
+            onChanged: (String valor) {
+              setState(() {
+                _behavior =
+                    StringValues.QUIZ_ANSWERS_OPTIONS.indexOf(valor);
+              });
+            },
+            items: StringValues.QUIZ_ANSWERS_OPTIONS
+                .map<DropdownMenuItem<String>>((String valor) {
+              return DropdownMenuItem<String>(
+                value: valor,
+                child: Text(valor),
+              );
+            }).toList(),
+          ),
           SizedBox(
             height: 30,
           ),
@@ -102,7 +168,7 @@ class QuizScreen extends StatelessWidget {
               shape: new RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(5.0)),
               onPressed: () {
-                /*...*/
+                _calculateProfile();
               },
               child: Text(
                 StringValues.SUBMIT_BUTTON_TITLE,
@@ -123,5 +189,18 @@ class QuizScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void _calculateProfile() {
+    int profile = _quiet + _privacy + _behavior;
+    if (profile < 5){
+      debugPrint("Da galera");
+    } else if (profile >= 5 && profile <= 7){
+      debugPrint("Não tem tempo ruim");
+    } else if (profile > 7){
+      debugPrint("Lobo solitário");
+    } else{
+      debugPrint("Deu ruim!");
+    }
   }
 }
