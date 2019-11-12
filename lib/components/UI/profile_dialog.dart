@@ -1,27 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:projsoftware/screens/change_profile_screen.dart';
 import 'package:projsoftware/values/colors.dart';
+import 'package:projsoftware/values/strings.dart';
 
 class CustomDialog extends StatelessWidget {
   String _title, _description, _imgPath;
   Color _headerColor;
 
   CustomDialog.loboSolitario()
-      : this._title = "Seu perfil é \"Lobo Solitário\"",
-        this._description =
-            "Você é uma pessoa que preza pela sua privacidade no estudo e gosta de lugares calmos e silenciosos.",
+      : this._title = StringValues.LONELY_WOLF_TITLE,
+        this._description = StringValues.LONELY_WOLF_DESCRIPTION,
         this._imgPath = 'assets/images/icon_lobo.png',
         this._headerColor = ColorValues.lonelyWolf;
   CustomDialog.semTempoRuim()
-      : this._title = "Seu perfil é \"Sem Tempo Ruim\"",
-        this._description =
-            "Você só quer um lugar para abrir seus livros, espalhar suas anotações e fazer algunss exercícios.",
+      : this._title = StringValues.JACK_OF_ALL_TRADES_TITILE,
+        this._description = StringValues.JACK_OF_ALL_TRADES_DESCRIPTION,
         this._imgPath = 'assets/images/icon_tempo.png',
         this._headerColor = ColorValues.jackOfAllTrades;
   CustomDialog.daGalera()
-      : this._title = "Seu perfil é \"Da Galera\"",
-        this._description =
-            "Você prefere estudar em grupos, compartilhando seu conhecimento com os demais e adquirir dos amigos.",
-        this._imgPath = 'assets/images/icon_tempo.png',
+      : this._title = StringValues.OUTGOING_TITLE,
+        this._description = StringValues.OUTGOING_DESCRIPTION,
+        this._imgPath = 'assets/images/icon_galera.png',
         this._headerColor = ColorValues.outgoing;
 
   @override
@@ -104,7 +103,11 @@ class CustomDialog extends StatelessWidget {
                     style: TextStyle(color: ColorValues.black, fontSize: 15),
                   ),
                   onPressed: () {
-                    Navigator.of(context).pop();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ChangeProfile()),
+                    );
+                    // Navigator.of(context).pop();
                   },
                 ),
                 FlatButton(
