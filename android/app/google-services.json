@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "895506828082",
+    "firebase_url": "https://estuduff.firebaseio.com",
+    "project_id": "estuduff",
+    "storage_bucket": "estuduff.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:895506828082:android:cf3e35decba6d1e60d652b",
+        "android_client_info": {
+          "package_name": "br.uff.estuduff"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "895506828082-2adt1h80m12b8r403cqg9ekam082a86b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCt7A0CEkuaz_y5O3U7ukBCFlY1kPvS_Y8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "895506828082-2adt1h80m12b8r403cqg9ekam082a86b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
