@@ -4,6 +4,7 @@ import 'package:projsoftware/components/UI/profile_card.dart';
 import 'package:projsoftware/values/colors.dart';
 import 'package:projsoftware/values/strings.dart';
 
+
 class ChangeProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -17,8 +18,9 @@ class ChangeProfile extends StatelessWidget {
         children: <Widget>[
           GestureDetector(
             child: ProfileCard.loboSolitario(),
+            
             onTap: () {
-              debugPrint("lobo solitário");
+              debugPrint("a ruim");
             },
           ),
           GestureDetector(

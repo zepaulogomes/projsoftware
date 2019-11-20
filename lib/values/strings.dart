@@ -4,6 +4,8 @@ class StringValues {
   static final HOME_TILE = 'Início';
   static final AVAIBLE_ENVIRONMENTS = 'Ambientes disponiveis';
   static final FILTER_ENVIRONMENTS = 'Filtrar ambientes';
+  static final FILTER_TYPE = 'Filtrar por tipo';
+  static final FILTER_NAME = 'Filtrar por perfil';
   static final CHANGE_PROFILE = 'Trocar perfil';
   static final EDIT_SETTINGS = 'Editar conta';
   static final LOGOUT = 'Sair';
@@ -39,6 +41,10 @@ class StringValues {
     'Concordo totalmente',
   ];
   static final ERROR_MESSAGE = 'Preencha todos os campos';
+
+  // EditProfileScreen
+  static final EDIT_ACCOUNT = 'Editar Conta';
+  static final EDIT_ACCOUNT_BUTTON_TITLE = 'SALVAR CONTA';
 
   // PROFILES
   static final LONELY_WOLF = "Lobo solitário";

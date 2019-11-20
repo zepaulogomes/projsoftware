@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:projsoftware/screens/change_profile_screen.dart';
+import 'package:projsoftware/screens/edit_profile_screen.dart';
+import 'package:projsoftware/screens/home_screen.dart';
 import 'package:projsoftware/values/colors.dart';
 import 'package:projsoftware/values/strings.dart';
 
@@ -8,6 +11,7 @@ class AppDrawer extends StatefulWidget {
 }
 
 class _AppDrawerState extends State<AppDrawer> {
+  bool _toFilter = false;
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -22,20 +26,19 @@ class _AppDrawerState extends State<AppDrawer> {
                 children: <Widget>[
                   Container(
                     child: FittedBox(
-                      child: Image.asset('assets/images/icon_lobo.png'),
-                      fit: BoxFit.fitHeight,
-                    ),
+                        child: Image.asset('assets/images/icon_lobo.png',
+                            width: 70)),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: ColorValues.grey,
                     ),
                   ),
                   SizedBox(
-                    height: 16,
+                    height: 20,
                   ),
                   Text(StringValues.GREETINGS + "Bárbara"),
                   SizedBox(
-                    height: 4,
+                    height: 8,
                   ),
                   Text("bramos@id.uff.brs"),
                 ],
@@ -48,29 +51,83 @@ class _AppDrawerState extends State<AppDrawer> {
                   ),
             ),
           ),
-          ListTile(
-            leading: Icon(Icons.home),
-            title: Text(StringValues.HOME_TILE),
+          GestureDetector(
+            child: ListTile(
+              leading: Icon(Icons.home),
+              title: Text(StringValues.HOME_TILE),
+            ),
+            onTap: () {
+              debugPrint("clickey");
+            },
           ),
-          ListTile(
-            leading: Icon(Icons.favorite),
-            title: Text(StringValues.AVAIBLE_ENVIRONMENTS),
+          GestureDetector(
+            child: ListTile(
+              leading: Icon(Icons.favorite),
+              title: Text(StringValues.AVAIBLE_ENVIRONMENTS),
+            ),
+            onTap: () {
+              debugPrint("chegay");
+            },
           ),
-          ListTile(
-            leading: Icon(Icons.search),
-            title: Text(StringValues.FILTER_ENVIRONMENTS),
+          ExpansionTile(
+              leading: Icon(Icons.search),
+              title: Text(StringValues.FILTER_ENVIRONMENTS),
+              children: <Widget>[
+                GestureDetector(
+                  child: ListTile(
+                    title: Text(StringValues.FILTER_TYPE),
+                  ),
+                  onTap: () {
+                    debugPrint("chegando");
+                  },
+                ),
+                GestureDetector(
+                  child: ListTile(
+                    title: Text(StringValues.FILTER_NAME),
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ChangeProfile()),
+                    );
+                  },
+                ),
+              ]),
+          GestureDetector(
+            child: ListTile(
+              leading: Icon(Icons.edit),
+              title: Text(StringValues.CHANGE_PROFILE),
+            ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ChangeProfile()),
+              );
+            },
           ),
-          ListTile(
-            leading: Icon(Icons.edit),
-            title: Text(StringValues.CHANGE_PROFILE),
+          GestureDetector(
+            child: ListTile(
+              leading: Icon(Icons.settings),
+              title: Text(StringValues.EDIT_SETTINGS),
+            ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => EditProfileScreen()),
+              );
+            },
           ),
-          ListTile(
-            leading: Icon(Icons.settings),
-            title: Text(StringValues.EDIT_SETTINGS),
-          ),
-          ListTile(
-            leading: Icon(Icons.exit_to_app),
-            title: Text(StringValues.LOGOUT),
+          GestureDetector(
+            child: ListTile(
+              leading: Icon(Icons.exit_to_app),
+              title: Text(StringValues.LOGOUT),
+            ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HomeScreen()),
+              );
+            },
           ),
         ],
       ),
