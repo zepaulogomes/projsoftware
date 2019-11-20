@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:projsoftware/components/UI/drawer.dart';
 import 'package:projsoftware/components/UI/profile_card.dart';
+import 'package:projsoftware/values/colors.dart';
+import 'package:projsoftware/values/strings.dart';
 
 class ChangeProfile extends StatelessWidget {
   @override
@@ -12,9 +15,24 @@ class ChangeProfile extends StatelessWidget {
       appBar: AppBar(),
       body: ListView(
         children: <Widget>[
-          ProfileCard.loboSolitario(),
-          ProfileCard.semTempoRuim(),
-          ProfileCard.daGalera(),
+          GestureDetector(
+            child: ProfileCard.loboSolitario(),
+            onTap: () {
+              debugPrint("lobo solitário");
+            },
+          ),
+          GestureDetector(
+            child: ProfileCard.semTempoRuim(),
+            onTap: () {
+              debugPrint("tempo ruim");
+            },
+          ),
+          GestureDetector(
+            child: ProfileCard.daGalera(),
+            onTap: () {
+              debugPrint("da galera");
+            },
+          ),
         ],
       ),
     );

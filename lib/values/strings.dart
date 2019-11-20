@@ -1,9 +1,19 @@
 class StringValues {
+  // Drawer
+  static final GREETINGS = 'Olá, ';
+  static final HOME_TILE = 'Início';
+  static final AVAIBLE_ENVIRONMENTS = 'Ambientes disponiveis';
+  static final FILTER_ENVIRONMENTS = 'Filtrar ambientes';
+  static final CHANGE_PROFILE = 'Trocar perfil';
+  static final EDIT_SETTINGS = 'Editar conta';
+  static final LOGOUT = 'Sair';
+
   // HomeScreen
   static final REGISTER_TITLE = 'Cadastre-se';
   static final REGISTER_BUTTON_TITLE = 'CADASTRAR';
   static final LOGIN_TITLE = 'Login';
   static final LOGIN_BUTTON_TITLE = 'ENTRAR';
+  static final NAME_PLACEHOLDER = 'Insira seu nome';
   static final EMAIL_PLACEHOLDER = 'Insira seu e-mail';
   static final PASSWORD_PLACEHOLDER = 'Insira sua senha';
   static final COURSE_PLACEHOLDER = 'Insira seu curso atual';

@@ -31,7 +31,7 @@ class ProfileCard extends StatelessWidget {
 
   Widget _buildCard(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.3,
+      // height: MediaQuery.of(context).size.height * 0.3,
       padding: EdgeInsets.only(
         top: 20,
       ),

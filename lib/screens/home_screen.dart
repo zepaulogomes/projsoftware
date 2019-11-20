@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projsoftware/components/UI/drawer.dart';
 
 import 'package:projsoftware/components/UI/text_field.dart';
 import 'package:projsoftware/screens/quiz_screen.dart';
@@ -21,6 +22,8 @@ class _HomeScreenState extends State<HomeScreen> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
+      appBar: AppBar(),
+      drawer: new AppDrawer(),
       body: Container(
         margin: EdgeInsets.fromLTRB(15, 10, 15, 20),
         child: ListView(
@@ -152,6 +155,10 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
+        SizedBox(
+          height: 20,
+        ),
+        TextFieldInput.texto(StringValues.NAME_PLACEHOLDER, Icons.person_outline),
         SizedBox(
           height: 20,
         ),
