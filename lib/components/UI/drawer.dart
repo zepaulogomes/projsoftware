@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:projsoftware/screens/change_profile_screen.dart';
 import 'package:projsoftware/screens/edit_profile_screen.dart';
+import 'package:projsoftware/screens/filter_by_type_screen.dart';
 import 'package:projsoftware/screens/home_screen.dart';
+import 'package:projsoftware/screens/available_environments_screen.dart';
 import 'package:projsoftware/values/colors.dart';
 import 'package:projsoftware/values/strings.dart';
 
@@ -66,7 +68,10 @@ class _AppDrawerState extends State<AppDrawer> {
               title: Text(StringValues.AVAIBLE_ENVIRONMENTS),
             ),
             onTap: () {
-              debugPrint("chegay");
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AvailableEnvironment()),
+              );
             },
           ),
           ExpansionTile(
@@ -78,7 +83,11 @@ class _AppDrawerState extends State<AppDrawer> {
                     title: Text(StringValues.FILTER_TYPE),
                   ),
                   onTap: () {
-                    debugPrint("chegando");
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => FilterByTypeScreen()),
+                    );
                   },
                 ),
                 GestureDetector(

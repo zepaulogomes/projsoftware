@@ -42,9 +42,14 @@ class StringValues {
   ];
   static final ERROR_MESSAGE = 'Preencha todos os campos';
 
-  // EditProfileScreen
+  // EDIT PROFILES SCREEN
   static final EDIT_ACCOUNT = 'Editar Conta';
   static final EDIT_ACCOUNT_BUTTON_TITLE = 'SALVAR CONTA';
+
+  // FILTER BY TYPE SCREEN
+  static final FILTER_BY_TYPE_TITTLE = 'Filtrar por tipo';
+  static final FILTER_BY_TYPE_BUTTON_TITTLE = 'PESQUISAR';
+  static final FILTER_BY_TYPE_PLACEHOLDER = 'Ex: sala de estudos, biblioteca ...';
 
   // PROFILES
   static final LONELY_WOLF = "Lobo solitário";
@@ -60,4 +65,6 @@ class StringValues {
   static final OUTGOING_TITLE = "Seu perfil é \"Da galera\"";
   static final OUTGOING_DESCRIPTION =
       "Você prefere estudar em grupos, compartilhando seu conhecimento com os demais e adquirir dos amigos.";
+
+  static final PROFILE_TEXT = "você está em";
 }
