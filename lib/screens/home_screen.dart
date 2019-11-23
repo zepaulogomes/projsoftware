@@ -22,8 +22,6 @@ class _HomeScreenState extends State<HomeScreen> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(),
-      drawer: new AppDrawer(),
       body: Container(
         margin: EdgeInsets.fromLTRB(15, 10, 15, 20),
         child: ListView(

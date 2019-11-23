@@ -4,6 +4,8 @@ import 'package:projsoftware/screens/edit_profile_screen.dart';
 import 'package:projsoftware/screens/filter_by_type_screen.dart';
 import 'package:projsoftware/screens/home_screen.dart';
 import 'package:projsoftware/screens/available_environments_screen.dart';
+import 'package:projsoftware/screens/lonely_wolf_profile_screen.dart';
+import 'package:projsoftware/screens/outgoing_screen.dart';
 import 'package:projsoftware/values/colors.dart';
 import 'package:projsoftware/values/strings.dart';
 
@@ -29,7 +31,7 @@ class _AppDrawerState extends State<AppDrawer> {
                   Container(
                     child: FittedBox(
                         child: Image.asset('assets/images/icon_lobo.png',
-                            width: 70)),
+                            width: 70, height: 70)),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: ColorValues.grey,
@@ -59,7 +61,11 @@ class _AppDrawerState extends State<AppDrawer> {
               title: Text(StringValues.HOME_TILE),
             ),
             onTap: () {
-              debugPrint("clickey");
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => LonelyWolf()),
+                // MaterialPageRoute(builder: (context) => Outgoing())
+              );
             },
           ),
           GestureDetector(
@@ -80,6 +86,7 @@ class _AppDrawerState extends State<AppDrawer> {
               children: <Widget>[
                 GestureDetector(
                   child: ListTile(
+                    contentPadding: EdgeInsets.fromLTRB(72, 0, 0, 0),
                     title: Text(StringValues.FILTER_TYPE),
                   ),
                   onTap: () {
@@ -92,6 +99,7 @@ class _AppDrawerState extends State<AppDrawer> {
                 ),
                 GestureDetector(
                   child: ListTile(
+                    contentPadding: EdgeInsets.fromLTRB(72, 0, 0, 0),
                     title: Text(StringValues.FILTER_NAME),
                   ),
                   onTap: () {

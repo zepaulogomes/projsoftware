@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projsoftware/components/UI/drawer.dart';
 import 'package:projsoftware/components/UI/profiles.dart';
 
 
@@ -11,6 +12,7 @@ class JackOfAllTrades extends StatelessWidget {
   Widget _buildJackOfAllTradesScreen() {
     return Scaffold(
       appBar: AppBar(),
+      drawer: new AppDrawer(),
       body: ListView(
         children: <Widget>[
           GestureDetector(

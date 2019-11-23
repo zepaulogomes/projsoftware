@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:projsoftware/components/UI/drawer.dart';
 import 'package:projsoftware/components/UI/profiles.dart';
-
 
 class LonelyWolf extends StatelessWidget {
   @override
@@ -11,11 +11,12 @@ class LonelyWolf extends StatelessWidget {
   Widget _buildLonenlyWolfScreen() {
     return Scaffold(
       appBar: AppBar(),
+      drawer: new AppDrawer(),
       body: ListView(
         children: <Widget>[
           GestureDetector(
             child: Profiles.loboSolitario(),
-            onTap: () {               
+            onTap: () {
               debugPrint("tempo ruim");
             },
           ),
