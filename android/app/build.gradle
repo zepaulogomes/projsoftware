@@ -41,6 +41,7 @@ android {
         applicationId "br.uff.estuduff"
         minSdkVersion 21
         targetSdkVersion 28
+        multiDexEnabled true
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"

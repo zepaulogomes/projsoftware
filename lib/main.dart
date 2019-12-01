@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projsoftware/screens/home_screen.dart';
+import 'package:projsoftware/screens/login_test.dart';
 import 'package:projsoftware/values/colors.dart';
 
 void main() => runApp(MyApp());
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return HomeScreen();
+    return LoginTestScreen();
+    // return HomeScreen();
   }
 }
