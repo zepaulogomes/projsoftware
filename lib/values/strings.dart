@@ -1,9 +1,16 @@
 class StringValues {
+  // PROFILE NAMES
+  static final LONELY_WOLF = "Lobo solitário";
+  static final JACK_OF_ALL_TRADES = "Não tem tempo ruim";
+  static final OUTGOING = "Da galera";
+
   // Drawer
   static final GREETINGS = 'Olá, ';
   static final HOME_TILE = 'Início';
   static final AVAIBLE_ENVIRONMENTS = 'Ambientes disponiveis';
   static final FILTER_ENVIRONMENTS = 'Filtrar ambientes';
+  static final FILTER_TYPE = 'Filtrar por tipo';
+  static final FILTER_NAME = 'Filtrar por perfil';
   static final CHANGE_PROFILE = 'Trocar perfil';
   static final EDIT_SETTINGS = 'Editar conta';
   static final LOGOUT = 'Sair';
@@ -40,18 +47,25 @@ class StringValues {
   ];
   static final ERROR_MESSAGE = 'Preencha todos os campos';
 
+  // EDIT PROFILES SCREEN
+  static final EDIT_ACCOUNT = 'Editar Conta';
+  static final EDIT_ACCOUNT_BUTTON_TITLE = 'SALVAR CONTA';
+
+  // FILTER BY TYPE SCREEN
+  static final FILTER_BY_TYPE_TITTLE = 'Filtrar por tipo';
+  static final FILTER_BY_TYPE_BUTTON_TITTLE = 'PESQUISAR';
+  static final FILTER_BY_TYPE_PLACEHOLDER = 'Ex: sala de estudos, biblioteca ...';
+
   // PROFILES
-  static final LONELY_WOLF = "Lobo solitário";
   static final LONELY_WOLF_TITLE = "Seu perfil é \"Lobo solitário\"";
   static final LONELY_WOLF_DESCRIPTION =
       "Você é uma pessoa que preza pela sua privacidade no estudo e gosta de lugares calmos e silenciosos.";
-  static final JACK_OF_ALL_TRADES = "Não tem tempo ruim";
   static final JACK_OF_ALL_TRADES_TITILE =
       "Seu perfil é \"Não tem tempo ruim\"";
   static final JACK_OF_ALL_TRADES_DESCRIPTION =
       "Você só quer um lugar para abrir seus livros e fazer exercícios.";
-  static final OUTGOING = "Da galera";
   static final OUTGOING_TITLE = "Seu perfil é \"Da galera\"";
   static final OUTGOING_DESCRIPTION =
       "Você prefere estudar em grupos, compartilhando seu conhecimento com os demais e adquirir dos amigos.";
+  static final PROFILE_TEXT = "você está em";
 }
