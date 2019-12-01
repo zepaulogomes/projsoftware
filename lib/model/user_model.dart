@@ -13,7 +13,4 @@ class UserModel {
     this._course,
     this._subjects,
   );
-
-  // TODO Implement getters and setters
-
-}
+  }

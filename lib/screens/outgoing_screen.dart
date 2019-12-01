@@ -6,10 +6,12 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 class Outgoing extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return _buildOutgoingScreen();
+    return _buildOutgoingScreen(context);
   }
 
-  Widget _buildOutgoingScreen() {
+  Widget _buildOutgoingScreen(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height * 0.65;
     return Scaffold(
       appBar: AppBar(),
       drawer: new AppDrawer(),
@@ -20,6 +22,14 @@ class Outgoing extends StatelessWidget {
             onTap: () {
               debugPrint("tempo bom");
             },
+          ),
+          SizedBox(
+            width: width,
+            height: height,
+            child: GoogleMap(
+              initialCameraPosition: CameraPosition(
+                  target: LatLng(-22.8808, -43.1043), zoom: 12.0),
+            ),
           ),
         ],
       ),

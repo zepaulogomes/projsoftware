@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:projsoftware/components/UI/drawer.dart';
 import 'package:projsoftware/components/UI/text_field.dart';
 import 'package:projsoftware/screens/quiz_screen.dart';
@@ -17,6 +18,7 @@ class _FilterByTypeScreenState extends State<FilterByTypeScreen> {
 
   Widget _buildFilterByTypeScreen(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(),
       drawer: new AppDrawer(),
@@ -46,8 +48,8 @@ class _FilterByTypeScreenState extends State<FilterByTypeScreen> {
                 SizedBox(
                   height: 20,
                 ),
-                TextFieldInput.texto(StringValues.FILTER_BY_TYPE_PLACEHOLDER,
-                    null),
+                TextFieldInput.texto(
+                    StringValues.FILTER_BY_TYPE_PLACEHOLDER, null),
                 SizedBox(
                   height: 20,
                 ),
@@ -78,6 +80,17 @@ class _FilterByTypeScreenState extends State<FilterByTypeScreen> {
                         ],
                       ),
                     ),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                  width: width,
+                  height: height * 0.45,
+                  child: GoogleMap(
+                    initialCameraPosition: CameraPosition(
+                        target: LatLng(-22.8808, -43.1043), zoom: 12.0),
                   ),
                 ),
               ],

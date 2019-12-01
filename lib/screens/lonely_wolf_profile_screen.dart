@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:projsoftware/components/UI/drawer.dart';
 import 'package:projsoftware/components/UI/profiles.dart';
@@ -38,6 +36,7 @@ class LonelyWolf extends StatelessWidget {
 
   Widget _buildLonenlyWolfScreen(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height * 0.58;
     return Scaffold(
       appBar: AppBar(),
       drawer: new AppDrawer(),
@@ -51,7 +50,7 @@ class LonelyWolf extends StatelessWidget {
           ),
           SizedBox(
             width: width,
-            height: 500,
+            height: height,
             child: GoogleMap(
               initialCameraPosition: CameraPosition(
               target: LatLng(-22.8808,  -43.1043),
