@@ -54,21 +54,21 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 SizedBox(
                   height: 20,
                 ),
-                TextFieldInput.email(StringValues.EMAIL_PLACEHOLDER),
+                TextFieldInput.email(StringValues.EMAIL_PLACEHOLDER, () {}),
                 SizedBox(
                   height: 20,
                 ),
-                TextFieldInput.senha(StringValues.PASSWORD_PLACEHOLDER),
+                TextFieldInput.senha(StringValues.PASSWORD_PLACEHOLDER, () {}),
                 SizedBox(
                   height: 20,
                 ),
-                TextFieldInput.texto(
-                    StringValues.COURSE_PLACEHOLDER, Icons.import_contacts),
+                TextFieldInput.texto(StringValues.COURSE_PLACEHOLDER,
+                    Icons.import_contacts, () {}),
                 SizedBox(
                   height: 20,
                 ),
-                TextFieldInput.texto(
-                    StringValues.LECTURES_PLACEHOLDER, Icons.arrow_drop_down),
+                TextFieldInput.texto(StringValues.LECTURES_PLACEHOLDER,
+                    Icons.arrow_drop_down, () {}),
                 SizedBox(
                   height: 20,
                 ),

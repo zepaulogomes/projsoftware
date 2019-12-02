@@ -5,25 +5,29 @@ class TextFieldInput extends StatefulWidget {
   final IconData _icon;
   final bool _password;
   final TextInputType _keyboardType;
+  final Function _onChanged;
 
   TextFieldInput(
-      this._placeHolder, this._icon, this._password, this._keyboardType);
+      this._placeHolder, this._icon, this._password, this._keyboardType, this._onChanged);
 
-  TextFieldInput.texto(String placeHolder, IconData icon)
+  TextFieldInput.texto(String placeHolder, IconData icon, Function onChanged)
       : this._placeHolder = placeHolder,
         this._icon = icon,
         this._password = false,
-        this._keyboardType = TextInputType.text;
-  TextFieldInput.senha(String placeHolder)
+        this._keyboardType = TextInputType.text,
+        this._onChanged = onChanged;
+  TextFieldInput.senha(String placeHolder, Function onChanged)
       : this._placeHolder = placeHolder,
         this._icon = Icons.lock_outline,
         this._password = true,
-        this._keyboardType = TextInputType.text;
-  TextFieldInput.email(String placeHolder)
+        this._keyboardType = TextInputType.text,
+        this._onChanged = onChanged;
+  TextFieldInput.email(String placeHolder, Function onChanged)
       : this._placeHolder = placeHolder,
         this._icon = Icons.mail_outline,
         this._password = false,
-        this._keyboardType = TextInputType.emailAddress;
+        this._keyboardType = TextInputType.emailAddress,
+        this._onChanged = onChanged;
 
   @override
   State<StatefulWidget> createState() => _TextFieldInputState();
@@ -41,6 +45,7 @@ class _TextFieldInputState extends State<TextFieldInput> {
           borderSide: BorderSide(width: 5.0),
         ),
       ),
+      onChanged: widget._onChanged,
     );
   }
 }

@@ -1,12 +1,12 @@
 import 'package:dartz/dartz.dart';
-import 'network_info.dart';
+import 'package:projsoftware/core/failure.dart';
+import 'package:projsoftware/core/network_info.dart';
 import 'login_local_data_source.dart';
 import 'login_remote_data_source.dart';
 import 'login_user_model.dart';
 import 'login_user.dart';
 import 'package:meta/meta.dart';
 import 'login_repository.dart';
-import 'failure.dart';
 
 class LoginRepositoryImpl implements LoginRepository {
   final LoginLocalDataSource localDataSource;

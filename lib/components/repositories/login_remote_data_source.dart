@@ -1,8 +1,9 @@
 import 'dart:convert';
 
+import 'package:projsoftware/core/exception.dart';
+
 import 'settings.dart';
 import 'login_user_model.dart';
-import 'exception.dart';
 import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
 
