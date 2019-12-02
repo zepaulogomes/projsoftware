@@ -1,8 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:projsoftware/screens/home_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:projsoftware/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:projsoftware/features/auth/presentation/screens/auth_screen.dart';
+import 'package:projsoftware/screens/jack_of_all_trades_screen.dart';
+import 'package:projsoftware/screens/lonely_wolf_profile_screen.dart';
+import 'package:projsoftware/screens/outgoing_screen.dart';
+import 'package:projsoftware/screens/quiz_screen.dart';
 import 'package:projsoftware/values/colors.dart';
+import 'injection_container.dart' as ic;
 
-void main() => runApp(MyApp());
+void main() async {
+  await ic.init();
+  runApp(MultiBlocProvider(providers: [
+    BlocProvider<AuthBloc>(
+      create: (BuildContext context) => ic.sl<AuthBloc>(),
+    ),
+  ], child: MyApp()));
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -18,14 +32,13 @@ class MyApp extends StatelessWidget {
           body1: TextStyle(fontFamily: 'OpenSans'),
         ),
       ),
-      home: MyHomePage(),
+      routes: {
+        "/": (BuildContext context) => AuthScreen(),
+        "/quiz": (BuildContext context) => QuizScreen(),
+        "/lonelyWolf": (BuildContext context) => LonelyWolf(),
+        "/outgoing": (BuildContext context) => Outgoing(),
+        "/jack": (BuildContext context) => JackOfAllTrades(),
+      },
     );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return HomeScreen();
   }
 }

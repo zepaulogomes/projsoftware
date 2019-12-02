@@ -1,44 +1,76 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:projsoftware/components/UI/drawer.dart';
 
 import 'package:projsoftware/components/UI/text_field.dart';
+import 'package:projsoftware/features/auth/presentation/bloc/bloc.dart';
 import 'package:projsoftware/screens/quiz_screen.dart';
 import 'package:projsoftware/values/strings.dart';
 
-class HomeScreen extends StatefulWidget {
+class AuthScreen extends StatefulWidget {
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _AuthScreenState createState() => _AuthScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _AuthScreenState extends State<AuthScreen> {
   bool _toLogin = true;
   bool toRegister = false;
+  final Map<String, dynamic> _formData = Map<String, dynamic>();
   @override
   Widget build(BuildContext context) {
-    return _buildHomeScreen(context);
+    return Scaffold(
+      body: BlocListener<AuthBloc, AuthState>(
+        listener: (context, state) {
+          if (state is Error) {
+            Scaffold.of(context).showSnackBar(
+              SnackBar(
+                content: Text(state.message),
+              ),
+            );
+          } else if (state is LoadedLonelyWolf) {
+            Navigator.pushReplacementNamed(context, "/lonelyWolf");
+          } else if (state is LoadedOutGoing) {
+            Navigator.pushReplacementNamed(context, "/outgoing");
+          } else if (state is LoadedJack) {
+            Navigator.pushReplacementNamed(context, "/jack");
+          } else if (state is LoadedSignUp) {
+            Navigator.pushReplacementNamed(context, "/quiz");
+          }
+        },
+        child: BlocBuilder<AuthBloc, AuthState>(
+          builder: (context, state) {
+            if (state is Loading) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            } else {
+              return _buildHomeScreen(context);
+            }
+          },
+        ),
+      ),
+    );
   }
 
   Widget _buildHomeScreen(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return Scaffold(
-      body: Container(
-        margin: EdgeInsets.fromLTRB(15, 10, 15, 20),
-        child: ListView(
-          children: <Widget>[
-            SizedBox(
-              height: height * 0.15,
-            ),
-            Row(
-              children: <Widget>[
-                Image(
-                  image: AssetImage('assets/images/logo.png'),
-                )
-              ],
-            ),
-            (_toLogin ? _buildLogin() : _buildRegister()),
-          ],
-        ),
+    return Container(
+      margin: EdgeInsets.fromLTRB(15, 10, 15, 20),
+      child: ListView(
+        children: <Widget>[
+          SizedBox(
+            height: height * 0.15,
+          ),
+          Row(
+            children: <Widget>[
+              Image(
+                image: AssetImage('assets/images/logo.png'),
+              )
+            ],
+          ),
+          (_toLogin ? _buildLogin() : _buildRegister()),
+        ],
       ),
     );
   }
@@ -78,11 +110,19 @@ class _HomeScreenState extends State<HomeScreen> {
         SizedBox(
           height: 20,
         ),
-        TextFieldInput.email(StringValues.EMAIL_PLACEHOLDER),
+        TextFieldInput.email(StringValues.EMAIL_PLACEHOLDER, (value) {
+          setState(() {
+            _formData[StringValues.EMAIL_PLACEHOLDER] = value;
+          });
+        }),
         SizedBox(
           height: 20,
         ),
-        TextFieldInput.senha(StringValues.PASSWORD_PLACEHOLDER),
+        TextFieldInput.senha(StringValues.PASSWORD_PLACEHOLDER, (value) {
+          setState(() {
+            _formData[StringValues.PASSWORD_PLACEHOLDER] = value;
+          });
+        }),
         SizedBox(
           height: 20,
         ),
@@ -98,7 +138,9 @@ class _HomeScreenState extends State<HomeScreen> {
             shape: new RoundedRectangleBorder(
                 borderRadius: new BorderRadius.circular(5.0)),
             onPressed: () {
-              /*...*/
+              BlocProvider.of<AuthBloc>(context).add(SignInEvent(
+                  email: _formData[StringValues.EMAIL_PLACEHOLDER],
+                  password: _formData[StringValues.PASSWORD_PLACEHOLDER]));
             },
             child: Text(
               StringValues.LOGIN_BUTTON_TITLE,
@@ -156,25 +198,46 @@ class _HomeScreenState extends State<HomeScreen> {
         SizedBox(
           height: 20,
         ),
-        TextFieldInput.texto(StringValues.NAME_PLACEHOLDER, Icons.person_outline),
+        TextFieldInput.texto(
+            StringValues.NAME_PLACEHOLDER, Icons.person_outline, (value) {
+          setState(() {
+            _formData[StringValues.NAME_PLACEHOLDER] = value;
+          });
+        }),
         SizedBox(
           height: 20,
         ),
-        TextFieldInput.email(StringValues.EMAIL_PLACEHOLDER),
+        TextFieldInput.email(StringValues.EMAIL_PLACEHOLDER, (value) {
+          setState(() {
+            _formData[StringValues.EMAIL_PLACEHOLDER] = value;
+          });
+        }),
         SizedBox(
           height: 20,
         ),
-        TextFieldInput.senha(StringValues.PASSWORD_PLACEHOLDER),
+        TextFieldInput.senha(StringValues.PASSWORD_PLACEHOLDER, (value) {
+          setState(() {
+            _formData[StringValues.PASSWORD_PLACEHOLDER] = value;
+          });
+        }),
         SizedBox(
           height: 20,
         ),
         TextFieldInput.texto(
-            StringValues.COURSE_PLACEHOLDER, Icons.import_contacts),
+            StringValues.COURSE_PLACEHOLDER, Icons.import_contacts, (value) {
+          setState(() {
+            _formData[StringValues.COURSE_PLACEHOLDER] = value;
+          });
+        }),
         SizedBox(
           height: 20,
         ),
         TextFieldInput.texto(
-            StringValues.LECTURES_PLACEHOLDER, Icons.arrow_drop_down),
+            StringValues.LECTURES_PLACEHOLDER, Icons.arrow_drop_down, (value) {
+          setState(() {
+            _formData[StringValues.LECTURES_PLACEHOLDER] = value;
+          });
+        }),
         SizedBox(
           height: 20,
         ),
@@ -190,10 +253,11 @@ class _HomeScreenState extends State<HomeScreen> {
             shape: new RoundedRectangleBorder(
                 borderRadius: new BorderRadius.circular(5.0)),
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => QuizScreen()),
-              );
+              BlocProvider.of<AuthBloc>(context).add(SignUpEvent(
+                  email: _formData[StringValues.EMAIL_PLACEHOLDER],
+                  password: _formData[StringValues.PASSWORD_PLACEHOLDER],
+                  name: _formData[StringValues.NAME_PLACEHOLDER],
+                  course: _formData[StringValues.COURSE_PLACEHOLDER]));
             },
             child: Text(
               StringValues.REGISTER_BUTTON_TITLE,

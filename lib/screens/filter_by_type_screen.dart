@@ -49,7 +49,7 @@ class _FilterByTypeScreenState extends State<FilterByTypeScreen> {
                   height: 20,
                 ),
                 TextFieldInput.texto(
-                    StringValues.FILTER_BY_TYPE_PLACEHOLDER, null),
+                    StringValues.FILTER_BY_TYPE_PLACEHOLDER, null, () {}),
                 SizedBox(
                   height: 20,
                 ),
