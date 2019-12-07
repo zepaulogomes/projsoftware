@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/material.dart';
 import 'package:projsoftware/core/failure.dart';
+import 'package:projsoftware/model/user_model.dart';
 import 'package:projsoftware/core/network_info.dart';
 import 'package:projsoftware/features/auth/data/datasources/auth_local_data_source.dart';
 import 'package:projsoftware/features/auth/data/datasources/auth_remote_data_source.dart';
-import 'package:projsoftware/model/user_model.dart';
 
 abstract class AuthRepository {
   Future<Either<Failure, UserModel>> signIn(String email, String password);
@@ -29,7 +29,13 @@ class AuthRepositoryImpl implements AuthRepository {
     if (await networkInfo.isConnected) {
       try {
         UserModel userModel = await remoteDataSource.signIn(email, password);
+        
         localDataSource.cacheUserToken(userModel.code);
+        localDataSource.cacheUserName(userModel.name);
+        localDataSource.cacheUserCourse(userModel.course);
+        if (userModel.profile != null){
+          localDataSource.cacheUserProfile(userModel.profile);
+        }
 
         return Right(userModel);
       } on PlatformException catch (e) {
@@ -49,7 +55,11 @@ class AuthRepositoryImpl implements AuthRepository {
       try {
         String userId =
             await remoteDataSource.signUp(name, course, email, password);
+        
         localDataSource.cacheUserToken(userId);
+        localDataSource.cacheUserName(name);
+        localDataSource.cacheUserCourse(course);
+
         return Right(userId);
       } on PlatformException catch (e) {
         return Left(PlatformFailure(message: e.message));

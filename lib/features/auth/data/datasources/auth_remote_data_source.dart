@@ -21,6 +21,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   AuthRemoteDataSourceImpl(
       {@required this.firebaseAuth, @required this.firebaseDatabase});
+
+      
   @override
   Future<UserModel> signIn(String email, String password) async {
     UserModel userModel;

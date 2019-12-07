@@ -1,8 +1,13 @@
 import 'dart:async';
-import 'package:bloc/bloc.dart';
 import './bloc.dart';
+import 'package:bloc/bloc.dart';
+import 'package:projsoftware/features/profile/data/repositories/profile_repository.dart';
 
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
+  final ProfileRepository profileRepository;
+
+  ProfileBloc({this.profileRepository});
+  
   @override
   ProfileState get initialState => InitialProfileState();
 
@@ -10,6 +15,12 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   Stream<ProfileState> mapEventToState(
     ProfileEvent event,
   ) async* {
-    // TODO: Add Logic
+    if (event is AnswerQuizEvent) {
+      // do something
+    } else if (event is SetProfileEvent) {
+      // do something
+    } else if (event is ChangeProfileEvent) {
+      // do something 
+    }
   }
 }
