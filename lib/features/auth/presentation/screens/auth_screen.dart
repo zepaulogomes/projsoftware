@@ -229,15 +229,15 @@ class _AuthScreenState extends State<AuthScreen> {
             _formData[StringValues.COURSE_PLACEHOLDER] = value;
           });
         }),
-        SizedBox(
-          height: 20,
-        ),
-        TextFieldInput.texto(
-            StringValues.LECTURES_PLACEHOLDER, Icons.arrow_drop_down, (value) {
-          setState(() {
-            _formData[StringValues.LECTURES_PLACEHOLDER] = value;
-          });
-        }),
+        // SizedBox(
+        //   height: 20,
+        // ),
+        // TextFieldInput.texto(
+        //     StringValues.LECTURES_PLACEHOLDER, Icons.arrow_drop_down, (value) {
+        //   setState(() {
+        //     _formData[StringValues.LECTURES_PLACEHOLDER] = value;
+        //   });
+        // }),
         SizedBox(
           height: 20,
         ),

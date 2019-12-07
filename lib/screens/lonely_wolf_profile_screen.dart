@@ -5,32 +5,30 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class LonelyWolf extends StatelessWidget {
 
-  // Completer<GoogleMapController> _controller = Completer();
-  // static const LatLng _center =
-  //     const LatLng(-22.8808,  -43.1043);
-  // final Set<Marker> _markers = {};
-  // LatLng _lastMapPosition = _center;
-  // MapType _currentMapType = MapType.normal;
-
-  // _onMapCreated(GoogleMapController controller) {
-  //   _controller.complete(controller);
-  // }
-
-  // _onCameraMove(CameraPosition position) {
-  //   _lastMapPosition = position.target;
-  // }
-
-  // Widget button(Function function, IconData icon) {
-  //   return FloatingActionButton(
-  //     onPressed: function,
-  //     materialTapTargetSize: MaterialTapTargetSize.padded,
-  //     backgroundColor: Colors.blue,
-  //     child: Icon(icon, size: 36.0),
-  //   );
-  // }
+  List<Marker> lonelyWolfMarkers = [];
 
   @override
   Widget build(BuildContext context) {
+    lonelyWolfMarkers.add(Marker(
+      markerId: MarkerId('myMarker' ),
+      draggable: false,
+      onTap: () {
+        debugPrint('marker tapped');
+      },
+      position: LatLng(-22.906382, -43.133637),
+            icon:
+      BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+      ));
+          lonelyWolfMarkers.add(Marker(
+      markerId: MarkerId('myMarker' ),
+      draggable: false,
+      onTap: () {
+        debugPrint('marker tapped');
+      },
+      position: LatLng(-22.906797, -43.132859),
+      icon:
+      BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+      ));
     return _buildLonenlyWolfScreen(context);
   }
 
@@ -54,8 +52,9 @@ class LonelyWolf extends StatelessWidget {
             child: GoogleMap(
               initialCameraPosition: CameraPosition(
               target: LatLng(-22.8808,  -43.1043),
-              zoom: 12.0
+              zoom: 11.0
               ),
+              markers: Set.from(lonelyWolfMarkers),
             ),
           ),
         ],
