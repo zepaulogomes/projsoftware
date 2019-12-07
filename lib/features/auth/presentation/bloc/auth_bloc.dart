@@ -1,9 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:projsoftware/core/exception.dart';
 import 'package:projsoftware/core/failure.dart';
 import 'package:projsoftware/features/auth/data/repositories/auth_repository.dart';
-import 'package:projsoftware/model/user_model.dart';
 import 'package:projsoftware/values/strings.dart';
 import './bloc.dart';
 import 'package:meta/meta.dart';
