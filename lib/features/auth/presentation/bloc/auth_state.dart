@@ -33,7 +33,12 @@ class LoadedJack extends AuthState {
   List<Object> get props => [userModel];
 }
 
-class LoadedSignUp extends AuthState {}
+class LoadedSignUp extends AuthState {
+  final UserModel userModel;
+  LoadedSignUp (this.userModel);
+
+  List<Object> get props => [userModel];
+}
 
 class GoToQuiz extends AuthState{}
 

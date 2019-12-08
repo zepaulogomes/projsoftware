@@ -43,15 +43,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       });
     } else if (event is SignUpEvent) {
       yield Loading();
-      final failureOrString = await authRepository.signUp(
+      final failureOrUser = await authRepository.signUp(
           event.email, event.password, event.name, event.course);
-      yield failureOrString.fold((failure) {
+      yield failureOrUser.fold((failure) {
         if (failure is PlatformFailure)
           return Error(message: failure.message);
         else
           return Error(message: "Servidor Indisponivel");
-      }, (userId) {
-        return LoadedSignUp();
+      }, (userModel) {
+        return LoadedSignUp(userModel);
       });
     } else if (event is SignOutEvent) {
       yield Loading();

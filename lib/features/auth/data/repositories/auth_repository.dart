@@ -11,7 +11,7 @@ import 'package:projsoftware/features/auth/data/datasources/auth_remote_data_sou
 
 abstract class AuthRepository {
   Future<Either<Failure, UserModel>> signIn(String email, String password);
-  Future<Either<Failure, String>> signUp(
+  Future<Either<Failure, UserModel>> signUp(
       String email, String password, String name, String course);
   Future<Either<Failure, void>> signOut();
 }
@@ -54,7 +54,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, String>> signUp(
+  Future<Either<Failure, UserModel>> signUp(
       String email, String password, String name, String course) async {
     if (await networkInfo.isConnected) {
       try {
@@ -65,7 +65,7 @@ class AuthRepositoryImpl implements AuthRepository {
         localDataSource.cacheUserName(name);
         localDataSource.cacheUserCourse(course);
 
-        return Right(userId);
+        return Right(UserModel(userId, name, course, null));
       } on PlatformException catch (e) {
         return Left(PlatformFailure(message: e.message));
       } catch (e) {

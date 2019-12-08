@@ -1,9 +1,9 @@
 import 'dart:core';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:projsoftware/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:projsoftware/features/auth/presentation/bloc/auth_state.dart';
+import 'package:projsoftware/features/profile/presentation/bloc/bloc.dart'
+    as profile;
 import 'package:projsoftware/model/user_model.dart';
 import 'package:projsoftware/screens/change_profile_screen.dart';
 import 'package:projsoftware/screens/edit_profile_screen.dart';
@@ -70,6 +70,31 @@ class _AppDrawerState extends State<AppDrawer> {
                   } else if (state is LoadedJack) {
                     return _buildHeader(context, state.userModel,
                         "assets/images/icon_tempo.png");
+                  } else if (state is LoadedSignUp) {
+                    return BlocBuilder<profile.ProfileBloc,
+                        profile.ProfileState>(
+                      builder: (context, stateInter) {
+                        if (stateInter is profile.PopUpDialog) {
+                          if (stateInter.profile == StringValues.LONELY_WOLF) {
+                            return _buildHeader(context, state.userModel,
+                                "assets/images/icon_lobo.png");
+                          } else if (stateInter.profile ==
+                              StringValues.OUTGOING) {
+                            return _buildHeader(context, state.userModel,
+                                "assets/images/icon_galera.png");
+                          } else if (stateInter.profile ==
+                              StringValues.JACK_OF_ALL_TRADES) {
+                            return _buildHeader(context, state.userModel,
+                                "assets/images/icon_tempo.png");
+                          }
+                        } else {
+                          return _buildHeader(
+                              context,
+                              UserModel("", "", "", ""),
+                              "assets/images/icon.png");
+                        }
+                      },
+                    );
                   } else {
                     return _buildHeader(context, UserModel("", "", "", ""),
                         "assets/images/icon.png");
