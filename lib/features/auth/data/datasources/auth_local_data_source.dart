@@ -5,8 +5,7 @@ abstract class AuthLocalDataSource {
   Future<void> cacheUserToken(String token);
   Future<void> cacheUserName(String token);
   Future<void> cacheUserCourse(String token);
-  Future<void> cacheUserProfile(String token);
-
+  Future<void> cacheUserProfile(String profile);
 }
 
 const CACHED_USER_TOKEN = 'CACHED_USER_TOKEN';
@@ -24,10 +23,6 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
     return sharedPreferences.setString(CACHED_USER_TOKEN, token);
   }
 
-  @override
-  String getCacheUserToken() {
-    return sharedPreferences.getString(CACHED_USER_TOKEN);
-  }
 
   @override
   Future<void> cacheUserCourse(String course) {
@@ -39,7 +34,7 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
     return sharedPreferences.setString(CACHED_USER_NAME, name);
   }
 
-  @override
+@override
   Future<void> cacheUserProfile(String profile) {
     return sharedPreferences.setString(CACHED_USER_PROFILE, profile);
   }

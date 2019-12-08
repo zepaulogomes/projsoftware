@@ -1,4 +1,5 @@
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
 import 'package:projsoftware/core/exception.dart';
 import 'package:projsoftware/model/user_model.dart';
 import 'package:flutter/services.dart';
@@ -38,7 +39,7 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
     }
 
     // Caso o usuário tenha um perfil definido
-    if (userModel.profile != null) {
+    if (userModel != null && userModel.profile != null) {
       return userModel.profile;
     } else {
       throw ServerException();
@@ -47,10 +48,9 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
 
   @override
   Future<void> setProfile(String userId, String newProfile) async {
-    String userId;
     try {
       //Altera o perfil na base de dados
-      firebaseDatabase.reference().child(_collectionName).child(userId).set(
+      await firebaseDatabase.reference().child(_collectionName).child(userId).set(
         {
           'perfil': newProfile,
         },

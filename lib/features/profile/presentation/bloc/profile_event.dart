@@ -7,21 +7,17 @@ abstract class ProfileEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class ChangeProfileEvent extends ProfileEvent{
-  // só navegar para tela de alterar perfil
-}
-
 class SetProfileEvent extends ProfileEvent{
-  final String userCode;
+  // final String userCode;
   final String newProfile;
 
-  SetProfileEvent({this.userCode, this.newProfile});
+  SetProfileEvent({ this.newProfile});
 
-  List<Object> get props => [userCode, newProfile];  
+  List<Object> get props => [newProfile];  
 
 }
 
-class AnswerQuizEvent{
+class AnswerQuizEvent extends ProfileEvent{
   final int firstAnswer;
   final int secondAnswer;
   final int thirdAnswer;

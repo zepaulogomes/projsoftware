@@ -11,23 +11,29 @@ abstract class ProfileState extends Equatable {
 // Mantém essa?
 class InitialProfileState extends ProfileState {}
 
-class InitialQuizState extends ProfileState {}
+class QuizState extends ProfileState {}
 
 class Loading extends ProfileState {}
 
-class PopUpJack extends ProfileState {}
+class PopUpDialog extends ProfileState {
+  final String profile;
 
-class PopUpOutgoing extends ProfileState {}
+  PopUpDialog(this.profile);
 
-class PopUpLonelyWolf extends ProfileState {}
+  @override
+  List<Object> get props => [profile];  
+}
 
-class ChangeProfileState extends ProfileState {}
+class SettedProfile extends ProfileState {
+  final String profile;
 
-class SettedJackState extends ProfileState {}
+  SettedProfile(this.profile);
 
-class SettedOutgoingState extends ProfileState {}
+  @override
+  List<Object> get props => [profile];  
+}
 
-class SettedLonelWolf extends ProfileState {}
+class BackToSignIn extends ProfileState{}
 
 class Error extends ProfileState {
   final String message;

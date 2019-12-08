@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
+import 'package:projsoftware/core/exception.dart';
 import 'package:projsoftware/core/failure.dart';
 import 'package:projsoftware/model/user_model.dart';
 import 'package:projsoftware/core/network_info.dart';
@@ -29,17 +30,19 @@ class AuthRepositoryImpl implements AuthRepository {
     if (await networkInfo.isConnected) {
       try {
         UserModel userModel = await remoteDataSource.signIn(email, password);
-        
+
         localDataSource.cacheUserToken(userModel.code);
         localDataSource.cacheUserName(userModel.name);
         localDataSource.cacheUserCourse(userModel.course);
         if (userModel.profile != null){
           localDataSource.cacheUserProfile(userModel.profile);
+        } else {
+           return Left(NullProfileFailure());
         }
-
+        
         return Right(userModel);
       } on PlatformException catch (e) {
-        return Left(PlatformFailure(message: e.message));
+        return Left(PlatformFailure(message: e.message)); 
       } catch (e) {
         return Left(ServerFailure());
       }
@@ -55,7 +58,7 @@ class AuthRepositoryImpl implements AuthRepository {
       try {
         String userId =
             await remoteDataSource.signUp(name, course, email, password);
-        
+
         localDataSource.cacheUserToken(userId);
         localDataSource.cacheUserName(name);
         localDataSource.cacheUserCourse(course);

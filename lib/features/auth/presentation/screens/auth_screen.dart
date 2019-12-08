@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:projsoftware/components/UI/drawer.dart';
 
 import 'package:projsoftware/components/UI/text_field.dart';
+import 'package:projsoftware/features/auth/presentation/bloc/auth_state.dart';
 import 'package:projsoftware/features/auth/presentation/bloc/bloc.dart';
-import 'package:projsoftware/screens/quiz_screen.dart';
 import 'package:projsoftware/values/strings.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -34,6 +34,8 @@ class _AuthScreenState extends State<AuthScreen> {
           } else if (state is LoadedJack) {
             Navigator.pushReplacementNamed(context, "/jack");
           } else if (state is LoadedSignUp) {
+            Navigator.pushReplacementNamed(context, "/quiz");
+          } else if (state is GoToQuiz){
             Navigator.pushReplacementNamed(context, "/quiz");
           }
         },

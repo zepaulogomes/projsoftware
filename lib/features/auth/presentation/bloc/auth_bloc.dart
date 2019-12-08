@@ -3,6 +3,7 @@ import 'package:bloc/bloc.dart';
 import 'package:projsoftware/core/exception.dart';
 import 'package:projsoftware/core/failure.dart';
 import 'package:projsoftware/features/auth/data/repositories/auth_repository.dart';
+import 'package:projsoftware/features/auth/presentation/bloc/auth_state.dart';
 import 'package:projsoftware/model/user_model.dart';
 import 'package:projsoftware/values/strings.dart';
 import './bloc.dart';
@@ -24,20 +25,25 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       yield Loading();
       final failureOrUser =
           await authRepository.signIn(event.email, event.password);
-      yield failureOrUser.fold((failure) {
-        if (failure is PlatformFailure)
-          return Error(message: failure.message);
-        else
-          return Error(message: "Servidor Indisponivel");
-      }, (userModel) {
-        if (userModel.profile == StringValues.LONELY_WOLF) {
-          return LoadedLonelyWolf();
-        } else if (userModel.profile == StringValues.OUTGOING) {
-          return LoadedOutGoing();
-        } else {
-          return LoadedJack();
-        }
-      });
+      yield failureOrUser.fold(
+        (failure) {
+          if (failure is PlatformFailure)
+            return Error(message: failure.message);
+          else if(failure is NullProfileFailure)
+            return GoToQuiz();
+          else
+            return Error(message: "Servidor Indisponivel");
+        },
+        (userModel) {
+          if (userModel.profile == StringValues.LONELY_WOLF) {
+            return LoadedLonelyWolf();
+          } else if (userModel.profile == StringValues.OUTGOING) {
+            return LoadedOutGoing();
+          } else {
+            return LoadedJack();
+          }
+        },
+      );
     } else if (event is SignUpEvent) {
       yield Loading();
       final failureOrStirng = await authRepository.signUp(
