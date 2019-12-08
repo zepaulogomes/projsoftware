@@ -23,6 +23,7 @@ class UserModel extends Equatable {
 
   String get name => _name;
   String get code => _code;
+  String get course => _course;
   String get profile => _profile;
 
   @override

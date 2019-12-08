@@ -1,24 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:projsoftware/screens/change_profile_screen.dart';
 import 'package:projsoftware/values/colors.dart';
 import 'package:projsoftware/values/strings.dart';
 
+import '../../features/profile/presentation/bloc/bloc.dart';
+import '../../features/profile/presentation/bloc/profile_event.dart';
+
 class CustomDialog extends StatelessWidget {
-  String _title, _description, _imgPath;
+  String _title, _description, _imgPath, _profile;
   Color _headerColor;
 
   CustomDialog.loboSolitario()
-      : this._title = StringValues.LONELY_WOLF_TITLE,
+      : this._profile = StringValues.LONELY_WOLF,
+        this._title = StringValues.LONELY_WOLF_TITLE,
         this._description = StringValues.LONELY_WOLF_DESCRIPTION,
         this._imgPath = 'assets/images/icon_lobo.png',
         this._headerColor = ColorValues.lonelyWolf;
   CustomDialog.semTempoRuim()
-      : this._title = StringValues.JACK_OF_ALL_TRADES_TITILE,
+      : this._profile = StringValues.JACK_OF_ALL_TRADES,
+        this._title = StringValues.JACK_OF_ALL_TRADES_TITILE,
         this._description = StringValues.JACK_OF_ALL_TRADES_DESCRIPTION,
         this._imgPath = 'assets/images/icon_tempo.png',
         this._headerColor = ColorValues.jackOfAllTrades;
   CustomDialog.daGalera()
-      : this._title = StringValues.OUTGOING_TITLE,
+      : this._profile = StringValues.OUTGOING,
+        this._title = StringValues.OUTGOING_TITLE,
         this._description = StringValues.OUTGOING_DESCRIPTION,
         this._imgPath = 'assets/images/icon_galera.png',
         this._headerColor = ColorValues.outgoing;
@@ -103,11 +110,12 @@ class CustomDialog extends StatelessWidget {
                     style: TextStyle(color: ColorValues.black, fontSize: 15),
                   ),
                   onPressed: () {
-                    Navigator.push(
+                    Navigator.of(context).pop();
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(builder: (context) => ChangeProfile()),
                     );
-                    // Navigator.of(context).pop();
+
                   },
                 ),
                 FlatButton(
@@ -115,7 +123,14 @@ class CustomDialog extends StatelessWidget {
                     "Na mosca!",
                     style: TextStyle(color: ColorValues.black, fontSize: 15),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    BlocProvider.of<ProfileBloc>(context).add(
+                      SetProfileEvent(
+                        newProfile: this._profile,
+                      ),
+                    );
+                  },
                 ),
               ],
             )

@@ -7,7 +7,12 @@ import 'package:projsoftware/features/auth/data/datasources/auth_local_data_sour
 import 'package:projsoftware/features/auth/data/datasources/auth_remote_data_source.dart';
 import 'package:projsoftware/features/auth/data/repositories/auth_repository.dart';
 import 'package:projsoftware/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:projsoftware/features/profile/data/datasources/profile_remote_data_source.dart';
+import 'package:projsoftware/features/profile/data/repositories/profile_repository.dart';
+import 'package:projsoftware/features/profile/presentation/bloc/bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'features/profile/data/datasources/profile_local_data_source.dart';
 
 final sl = GetIt.instance;
 
@@ -18,8 +23,23 @@ Future<void> init() async {
     ),
   );
 
+  sl.registerFactory(
+    () => ProfileBloc(
+      profileRepository: sl(),
+    ),
+  );
+
   sl.registerLazySingleton<AuthRepository>(
     () => AuthRepositoryImpl(
+      localDataSource: sl(),
+      remoteDataSource: sl(),
+      networkInfo: sl(),
+    ),
+  );
+
+  
+  sl.registerLazySingleton<ProfileRepository>(
+    () => ProfileRepositoryImpl(
       localDataSource: sl(),
       remoteDataSource: sl(),
       networkInfo: sl(),
@@ -32,9 +52,21 @@ Future<void> init() async {
       firebaseAuth: sl(),
     ),
   );
+  
+  sl.registerLazySingleton<ProfileRemoteDataSource>(
+    () => ProfileRemoteDataSourceImpl(
+      firebaseDatabase: sl(),
+    ),
+  );
 
   sl.registerLazySingleton<AuthLocalDataSource>(
     () => AuthLocalDataSourceImpl(
+      sharedPreferences: sl(),
+    ),
+  );
+  
+  sl.registerLazySingleton<ProfileLocalDataSource>(
+    () => ProfileLocalDataSourceImpl(
       sharedPreferences: sl(),
     ),
   );
@@ -44,6 +76,7 @@ Future<void> init() async {
       sl(),
     ),
   );
+  
 
   final sharedPreferences = await SharedPreferences.getInstance();
   sl.registerLazySingleton(() => sharedPreferences);

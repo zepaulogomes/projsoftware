@@ -21,3 +21,7 @@ class PlatformFailure extends Failure {
 }
 
 class NoInternetConnectionFailure extends Failure {}
+
+class NullProfileFailure extends Failure{}
+
+class InvalidTokenFailure extends Failure{}

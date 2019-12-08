@@ -19,6 +19,8 @@ class LoadedJack extends AuthState {}
 
 class LoadedSignUp extends AuthState {}
 
+class GoToQuiz extends AuthState{}
+
 class Error extends AuthState {
   final String message;
 
