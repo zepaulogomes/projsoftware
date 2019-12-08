@@ -19,7 +19,6 @@ class AppDrawer extends StatefulWidget {
 }
 
 class _AppDrawerState extends State<AppDrawer> {
-  bool _toFilter = false;
 
   Widget _buildHeader (BuildContext context, UserModel userModel, String image){
     return DrawerHeader(

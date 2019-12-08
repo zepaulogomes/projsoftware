@@ -4,8 +4,7 @@ import 'package:projsoftware/components/UI/profiles.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class LonelyWolf extends StatelessWidget {
-
-  List<Marker> lonelyWolfMarkers = [];
+  final List<Marker> lonelyWolfMarkers = [];
 
   @override
   Widget build(BuildContext context) {

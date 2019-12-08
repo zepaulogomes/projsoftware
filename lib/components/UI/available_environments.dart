@@ -3,8 +3,8 @@ import 'package:projsoftware/values/colors.dart';
 import 'package:projsoftware/values/strings.dart';
 
 class AvailableEnvironments extends StatelessWidget {
-  String _title, _description, _imgPath;
-  Color _headerColor;
+  final String _title, _description, _imgPath;
+  final Color _headerColor;
 
   AvailableEnvironments.ambientesDisponiveis()
       : this._title = StringValues.AVAIBLE_ENVIRONMENTS,

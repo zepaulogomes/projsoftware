@@ -33,8 +33,6 @@ class _QuizScreenState extends State<QuizScreen> {
   }
 
   Widget _buildHomeScreen(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
     return Container(
       margin: EdgeInsets.fromLTRB(15, 10, 15, 20),
       child: ListView(
