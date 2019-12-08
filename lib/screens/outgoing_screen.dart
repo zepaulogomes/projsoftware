@@ -5,7 +5,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class Outgoing extends StatelessWidget {
 
-  List<Marker> outGoingMarkers = [];
+  final List<Marker> outGoingMarkers = [];
 
   @override
   Widget build(BuildContext context) {

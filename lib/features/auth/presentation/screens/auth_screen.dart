@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:projsoftware/components/UI/drawer.dart';
-
 import 'package:projsoftware/components/UI/text_field.dart';
 import 'package:projsoftware/features/auth/presentation/bloc/auth_state.dart';
 import 'package:projsoftware/features/auth/presentation/bloc/bloc.dart';
@@ -55,7 +53,6 @@ class _AuthScreenState extends State<AuthScreen> {
   }
 
   Widget _buildHomeScreen(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Container(
       margin: EdgeInsets.fromLTRB(15, 10, 15, 20),

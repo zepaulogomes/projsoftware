@@ -24,8 +24,14 @@ class SignUpEvent extends AuthEvent {
   final String name;
   final String course;
 
-  SignUpEvent({@required this.email, @required this.password, @required this.name, @required this.course});
+  SignUpEvent(
+      {@required this.email,
+      @required this.password,
+      @required this.name,
+      @required this.course});
 
   @override
   List<Object> get props => [email, password, name, course];
 }
+
+class SignOutEvent extends AuthEvent {}

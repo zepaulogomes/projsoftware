@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class SubjectModel {
   final String _code;
   final String _name;

@@ -50,7 +50,7 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
   Future<void> setProfile(String userId, String newProfile) async {
     try {
       //Altera o perfil na base de dados
-      await firebaseDatabase.reference().child(_collectionName).child(userId).set(
+      await firebaseDatabase.reference().child(_collectionName).child(userId).update(
         {
           'perfil': newProfile,
         },

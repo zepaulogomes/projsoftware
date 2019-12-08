@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ abstract class AuthRepository {
   Future<Either<Failure, UserModel>> signIn(String email, String password);
   Future<Either<Failure, String>> signUp(
       String email, String password, String name, String course);
+  Future<Either<Failure, void>> signOut();
 }
 
 class AuthRepositoryImpl implements AuthRepository {
@@ -71,6 +73,21 @@ class AuthRepositoryImpl implements AuthRepository {
       }
     } else {
       return Left(NoInternetConnectionFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> signOut() async {
+    try {
+      await remoteDataSource.signOut();
+      await localDataSource.cleanCache();
+      return Right(Void());
+    } on PlatformException catch (e) {
+      return Left(PlatformFailure(message: e.message));
+    } on CacheException {
+      return Left(CacheFailure());
+    } catch (e) {
+      return Left(ServerFailure());
     }
   }
 }

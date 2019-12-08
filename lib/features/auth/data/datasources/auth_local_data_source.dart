@@ -1,11 +1,13 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:meta/meta.dart';
+import '../../../../core/exception.dart';
 
 abstract class AuthLocalDataSource {
   Future<void> cacheUserToken(String token);
   Future<void> cacheUserName(String token);
   Future<void> cacheUserCourse(String token);
   Future<void> cacheUserProfile(String profile);
+  Future<bool> cleanCache();
 }
 
 const CACHED_USER_TOKEN = 'CACHED_USER_TOKEN';
@@ -23,7 +25,6 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
     return sharedPreferences.setString(CACHED_USER_TOKEN, token);
   }
 
-
   @override
   Future<void> cacheUserCourse(String course) {
     return sharedPreferences.setString(CACHED_USER_COURSE, course);
@@ -34,8 +35,17 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
     return sharedPreferences.setString(CACHED_USER_NAME, name);
   }
 
-@override
+  @override
   Future<void> cacheUserProfile(String profile) {
     return sharedPreferences.setString(CACHED_USER_PROFILE, profile);
+  }
+
+  @override
+  Future<bool> cleanCache() {
+    try {
+      return sharedPreferences.clear();
+    } catch (e) {
+      throw CacheException();
+    }
   }
 }

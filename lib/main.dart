@@ -12,14 +12,19 @@ import 'injection_container.dart' as ic;
 
 void main() async {
   await ic.init();
-  runApp(MultiBlocProvider(providers: [
-    BlocProvider<AuthBloc>(
-      create: (BuildContext context) => ic.sl<AuthBloc>(),
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider<AuthBloc>(
+          create: (BuildContext context) => ic.sl<AuthBloc>(),
+        ),
+        BlocProvider<ProfileBloc>(
+          create: (BuildContext context) => ic.sl<ProfileBloc>(),
+        ),
+      ],
+      child: MyApp(),
     ),
-    BlocProvider<ProfileBloc>(
-      create: (BuildContext context) => ic.sl<ProfileBloc>(),
-    ),
-  ], child: MyApp()));
+  );
 }
 
 class MyApp extends StatelessWidget {
