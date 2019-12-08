@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projsoftware/components/UI/drawer.dart';
 import 'package:projsoftware/components/UI/profile_card.dart';
-import 'package:projsoftware/values/colors.dart';
-import 'package:projsoftware/values/strings.dart';
-
 import 'jack_of_all_trades_screen.dart';
 import 'lonely_wolf_profile_screen.dart';
 import 'outgoing_screen.dart';

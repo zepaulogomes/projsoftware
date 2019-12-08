@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:projsoftware/components/UI/drawer.dart';
 import 'package:projsoftware/components/UI/text_field.dart';
-import 'package:projsoftware/screens/quiz_screen.dart';
 import 'package:projsoftware/values/strings.dart';
 
 class FilterByTypeScreen extends StatefulWidget {

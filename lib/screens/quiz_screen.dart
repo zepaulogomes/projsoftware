@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:projsoftware/components/UI/profile_dialog.dart';
-
 import 'package:projsoftware/values/strings.dart';
 import 'package:projsoftware/values/colors.dart';
 

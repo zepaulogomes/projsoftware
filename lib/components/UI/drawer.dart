@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:projsoftware/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:projsoftware/features/auth/presentation/bloc/auth_state.dart';
-import 'package:projsoftware/features/auth/presentation/screens/auth_screen.dart';
 import 'package:projsoftware/model/user_model.dart';
 import 'package:projsoftware/screens/change_profile_screen.dart';
 import 'package:projsoftware/screens/edit_profile_screen.dart';

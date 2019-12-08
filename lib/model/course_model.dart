@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class CourseModel {
   final String _name;
   final String _grade;
