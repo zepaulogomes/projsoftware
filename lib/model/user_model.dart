@@ -24,6 +24,7 @@ class UserModel extends Equatable {
   String get name => _name;
   String get code => _code;
   String get profile => _profile;
+  String get course => _course;
 
   @override
   List<Object> get props => [_code, _name, _course, _subjects, _profile];

@@ -38,7 +38,6 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     } on PlatformException catch (e) {
       throw e;
     } catch (e) {
-      print("[AuthRemoteDataSource] ${e.toString()}");
       throw ServerException();
     }
 
@@ -50,9 +49,9 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<void> signOut() {
+  Future<void> signOut() async {
     try {
-      firebaseAuth.signOut();
+      await firebaseAuth.signOut();
     } on PlatformException catch (e) {
       throw e;
     } catch (e) {
@@ -77,7 +76,6 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     } on PlatformException catch (e) {
       throw e;
     } catch (e) {
-      print("[AuthRemoteDataSource] ${e.toString()}");
       throw ServerException();
     }
 

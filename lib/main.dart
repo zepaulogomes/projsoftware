@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:projsoftware/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:projsoftware/features/auth/presentation/bloc/auth_state.dart';
 import 'package:projsoftware/features/auth/presentation/screens/auth_screen.dart';
 import 'package:projsoftware/screens/jack_of_all_trades_screen.dart';
 import 'package:projsoftware/screens/lonely_wolf_profile_screen.dart';
@@ -11,11 +12,16 @@ import 'injection_container.dart' as ic;
 
 void main() async {
   await ic.init();
-  runApp(MultiBlocProvider(providers: [
-    BlocProvider<AuthBloc>(
-      create: (BuildContext context) => ic.sl<AuthBloc>(),
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider<AuthBloc>(
+          create: (BuildContext context) => ic.sl<AuthBloc>(),
+        ),
+      ],
+      child: MyApp(),
     ),
-  ], child: MyApp()));
+  );
 }
 
 class MyApp extends StatelessWidget {

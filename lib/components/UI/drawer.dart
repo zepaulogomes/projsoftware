@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:projsoftware/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:projsoftware/features/auth/presentation/bloc/auth_state.dart';
 import 'package:projsoftware/features/auth/presentation/screens/auth_screen.dart';
+import 'package:projsoftware/model/user_model.dart';
 import 'package:projsoftware/screens/change_profile_screen.dart';
 import 'package:projsoftware/screens/edit_profile_screen.dart';
 import 'package:projsoftware/screens/filter_by_type_screen.dart';
 import 'package:projsoftware/screens/available_environments_screen.dart';
 import 'package:projsoftware/screens/lonely_wolf_profile_screen.dart';
-import 'package:projsoftware/screens/outgoing_screen.dart';
 import 'package:projsoftware/values/colors.dart';
 import 'package:projsoftware/values/strings.dart';
+
+import '../../features/auth/presentation/bloc/bloc.dart';
 
 class AppDrawer extends StatefulWidget {
   @override
@@ -16,21 +21,17 @@ class AppDrawer extends StatefulWidget {
 
 class _AppDrawerState extends State<AppDrawer> {
   bool _toFilter = false;
-  @override
-  Widget build(BuildContext context) {
-    return Drawer(
-      child: ListView(
-        children: <Widget>[
-          SafeArea(
-            bottom: true,
-            child: DrawerHeader(
+
+  Widget _buildHeader (BuildContext context, UserModel userModel, String image){
+    return DrawerHeader(
+              
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Container(
                     child: FittedBox(
-                        child: Image.asset('assets/images/icon_lobo.png',
+                        child: Image.asset(image,
                             width: 70, height: 70)),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
@@ -40,11 +41,11 @@ class _AppDrawerState extends State<AppDrawer> {
                   SizedBox(
                     height: 20,
                   ),
-                  Text(StringValues.GREETINGS + "Bárbara"),
+                  Text(StringValues.GREETINGS + userModel.name),
                   SizedBox(
                     height: 8,
                   ),
-                  Text("bramos@id.uff.brs"),
+                  Text(userModel.course),
                 ],
               ),
               padding: EdgeInsets.all(12),
@@ -53,7 +54,29 @@ class _AppDrawerState extends State<AppDrawer> {
                   // color: ColorValues.jackOfAllTrades,
                   // color: ColorValues.outgoing,
                   ),
-            ),
+            );
+  }
+
+  Widget _buildDrawer(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        children: <Widget>[
+          SafeArea(
+            bottom: true,
+            
+            child: BlocBuilder<AuthBloc, AuthState>(
+              builder: (context, state){
+                if (state is LoadedLonelyWolf){
+                  return _buildHeader(context, state.userModel, "assets/images/icon_lobo.png");
+                } else if (state is LoadedOutGoing){
+                  return _buildHeader(context, state.userModel, "assets/images/icon_galera.png");
+                } else if (state is LoadedJack){
+                  return _buildHeader(context, state.userModel, "assets/images/icon_tempo.png");
+                } else { 
+                   return _buildHeader(context, UserModel("", "", "", ""),"assets/images/icon.png");
+                }
+              },
+            )
           ),
           GestureDetector(
             child: ListTile(
@@ -140,13 +163,32 @@ class _AppDrawerState extends State<AppDrawer> {
               title: Text(StringValues.LOGOUT),
             ),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => AuthScreen()),
-              );
+              BlocProvider.of<AuthBloc>(context).add(SignOutEvent());
             },
           ),
         ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<AuthBloc, AuthState>(
+      listener: (context, state) {
+        if (state is LoadedSignOut) {
+          Navigator.pushReplacementNamed(context, "/");
+        } else if (state is Error) {
+          Scaffold.of(context).showSnackBar(
+            SnackBar(
+              content: Text(state.message),
+            ),
+          );
+        }
+      },
+      child: BlocBuilder<AuthBloc, AuthState>(
+        builder: (context, state) {
+          return _buildDrawer(context);
+        },
       ),
     );
   }
