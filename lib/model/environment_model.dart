@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:firebase_database/firebase_database.dart';
 
-class EnviromentModel extends Equatable{
+class EnvironmentModel extends Equatable{
   final String _code;
   final String _name;
   final String _complement;
@@ -9,9 +9,9 @@ class EnviromentModel extends Equatable{
   final String _type;
   final String _latitude;
   final String _longitude;
-  final String _path;
+  final String _profile;
 
-  EnviromentModel(
+  EnvironmentModel(
     this._code,
     this._name,
     this._complement,
@@ -19,11 +19,11 @@ class EnviromentModel extends Equatable{
     this._type,
     this._latitude,
     this._longitude,
-    this._path,
+    this._profile,
   );
 
-  factory EnviromentModel.fromDataSnapshot(DataSnapshot snapshot){
-    return EnviromentModel(
+  factory EnvironmentModel.fromDataSnapshot(DataSnapshot snapshot){
+    return EnvironmentModel(
       snapshot.key,
       snapshot.value["campus"],
       snapshot.value["complemento"],
@@ -43,8 +43,8 @@ class EnviromentModel extends Equatable{
   String get type => _type;
   String get latitude => _latitude;
   String get longitude => _longitude;
-  String get path => _path;
+  String get path => _profile;
   
   @override
-  List<Object> get props => [_code, _name, _complement, _building, _type, _latitude, _longitude, _path];
+  List<Object> get props => [_code, _name, _complement, _building, _type, _latitude, _longitude, _profile];
 }

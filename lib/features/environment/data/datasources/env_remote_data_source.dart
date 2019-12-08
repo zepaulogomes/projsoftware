@@ -3,15 +3,14 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:projsoftware/core/exception.dart';
-import 'package:projsoftware/model/user_model.dart';
+import 'package:projsoftware/model/environment_model.dart';
 
 abstract class EnvRemoteDataSource {
-  Future<UserModel> signIn(String email, String password);
+  Future<List<EnviromentModel>> filtterByType(String type);
 
-  Future<String> signUp(
-      String name, String course, String email, String password);
+  Future<List<EnviromentModel>> filtterByProfile(String type);
 
-  Future<void> signOut();
+  Future<List<EnviromentModel>> noFiltter(String type);
 }
 
 class EnvRemoteDataSourceImpl implements EnvRemoteDataSource {
@@ -20,10 +19,12 @@ class EnvRemoteDataSourceImpl implements EnvRemoteDataSource {
 
   EnvRemoteDataSourceImpl(
       {@required this.firebaseAuth, @required this.firebaseDatabase});
+      
   @override
-  Future<UserModel> signIn(String email, String password) async {
+  Future<List<EnviromentModel>> filtterByType(String type) async {
+    String resultFiltterByType;
     try {
-      //implementar
+      //return resultFiltterByType = type;
     } on PlatformException catch (e) {
       throw e;
     } catch (e) {
@@ -32,9 +33,10 @@ class EnvRemoteDataSourceImpl implements EnvRemoteDataSource {
   }
 
   @override
-  Future<void> signOut() {
+  Future<List<EnviromentModel>> filtterByProfile(String type) {
+    String resultFiltterByProfile;
     try {
-      //implementar
+      //return resultFiltterByProfile = type;
     } on PlatformException catch (e) {
       throw e;
     } catch (e) {
@@ -43,11 +45,10 @@ class EnvRemoteDataSourceImpl implements EnvRemoteDataSource {
   }
 
   @override
-  Future<String> signUp(
-      String name, String course, String email, String password) async {
-    String userId;
+  Future<List<EnviromentModel>> noFiltter(String type) async {
+    String resultNoFiltter;
     try {
-      //implementar
+      //return resultNoFiltter = type;
     } on PlatformException catch (e) {
       throw e;
     } catch (e) {

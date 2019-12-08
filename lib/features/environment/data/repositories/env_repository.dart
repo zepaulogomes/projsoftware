@@ -5,12 +5,12 @@ import 'package:projsoftware/core/failure.dart';
 import 'package:projsoftware/core/network_info.dart';
 import 'package:projsoftware/features/environment/data/datasources/env_local_data_source.dart';
 import 'package:projsoftware/features/environment/data/datasources/env_remote_data_source.dart';
-import 'package:projsoftware/model/user_model.dart';
+import 'package:projsoftware/model/environment_model.dart';
 
 abstract class EnvRepository {
-  Future<Either<Failure, UserModel>> signIn(String email, String password);
-  Future<Either<Failure, String>> signUp(
-      String email, String password, String name, String course);
+  Future<Either<Failure, String>> filtterByType();
+  Future<Either<Failure, String>> filtterByProfile();
+  Future<Either<Failure, String>> noFiltter();
 }
 
 class EnvRepositoryImpl implements EnvRepository {
@@ -24,8 +24,7 @@ class EnvRepositoryImpl implements EnvRepository {
       @required this.networkInfo});
 
   @override
-  Future<Either<Failure, UserModel>> signIn(
-      String email, String password) async {
+  Future<Either<Failure, String>> filtterByType() async {
     if (await networkInfo.isConnected) {
       try {
         //implementar
@@ -41,8 +40,23 @@ class EnvRepositoryImpl implements EnvRepository {
   }
 
   @override
-  Future<Either<Failure, String>> signUp(
-      String email, String password, String name, String course) async {
+  Future<Either<Failure, String>> filtterByProfile() async {
+    if (await networkInfo.isConnected) {
+      try {
+        //implementar
+        return Right(null);
+      } on PlatformException catch (e) {
+        return Left(PlatformFailure(message: e.message));
+      } catch (e) {
+        return Left(ServerFailure());
+      }
+    } else {
+      return Left(NoInternetConnectionFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> noFiltter() async {
     if (await networkInfo.isConnected) {
       try {
         //implementar
