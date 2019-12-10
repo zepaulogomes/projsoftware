@@ -6,11 +6,11 @@ import 'package:projsoftware/core/exception.dart';
 import 'package:projsoftware/model/environment_model.dart';
 
 abstract class EnvRemoteDataSource {
-  Future<List<EnviromentModel>> filtterByType(String type);
+  Future<List<EnvironmentModel>> filtterByType(String type);
 
-  Future<List<EnviromentModel>> filtterByProfile(String type);
+  Future<List<EnvironmentModel>> filtterByProfile(String type);
 
-  Future<List<EnviromentModel>> noFiltter(String type);
+  Future<List<EnvironmentModel>> noFiltter(String type);
 }
 
 class EnvRemoteDataSourceImpl implements EnvRemoteDataSource {
@@ -21,7 +21,7 @@ class EnvRemoteDataSourceImpl implements EnvRemoteDataSource {
       {@required this.firebaseAuth, @required this.firebaseDatabase});
       
   @override
-  Future<List<EnviromentModel>> filtterByType(String type) async {
+  Future<List<EnvironmentModel>> filtterByType(String type) async {
     String resultFiltterByType;
     try {
       //return resultFiltterByType = type;
@@ -33,7 +33,7 @@ class EnvRemoteDataSourceImpl implements EnvRemoteDataSource {
   }
 
   @override
-  Future<List<EnviromentModel>> filtterByProfile(String type) {
+  Future<List<EnvironmentModel>> filtterByProfile(String type) {
     String resultFiltterByProfile;
     try {
       //return resultFiltterByProfile = type;
@@ -45,7 +45,7 @@ class EnvRemoteDataSourceImpl implements EnvRemoteDataSource {
   }
 
   @override
-  Future<List<EnviromentModel>> noFiltter(String type) async {
+  Future<List<EnvironmentModel>> noFiltter(String type) async {
     String resultNoFiltter;
     try {
       //return resultNoFiltter = type;

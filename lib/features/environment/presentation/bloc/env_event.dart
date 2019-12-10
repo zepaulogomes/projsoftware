@@ -11,7 +11,7 @@ abstract class EnvEvent extends Equatable {
 
 class FiltterByTypeEvent extends EnvEvent {
 
-  final EnviromentModel enviromentModel;
+  final EnvironmentModel enviromentModel;
 
   FiltterByTypeEvent({@required this.enviromentModel});
 
@@ -21,7 +21,7 @@ class FiltterByTypeEvent extends EnvEvent {
 
 class FiltterByProfileEvent extends EnvEvent {
 
-  final EnviromentModel enviromentModel;
+  final EnvironmentModel enviromentModel;
 
   FiltterByProfileEvent({@required this.enviromentModel});
 
@@ -31,7 +31,7 @@ class FiltterByProfileEvent extends EnvEvent {
 
 class NoFiltterEvent extends EnvEvent {
 
-  final EnviromentModel enviromentModel;
+  final EnvironmentModel enviromentModel;
 
   NoFiltterEvent({@required this.enviromentModel});
 
