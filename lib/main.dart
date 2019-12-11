@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       routes: {
-        "/": (BuildContext context) => QuizScreen(),
+        "/": (BuildContext context) => AuthScreen(),
         "/quiz": (BuildContext context) => QuizScreen(),
         "/lonelyWolf": (BuildContext context) => LonelyWolf(),
         "/outgoing": (BuildContext context) => Outgoing(),
