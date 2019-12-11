@@ -52,7 +52,9 @@ class JackOfAllTrades extends StatelessWidget {
             height: height,
             child: GoogleMap(
               initialCameraPosition: CameraPosition(
-                  target: LatLng(-22.8808, -43.1043), zoom: 12.0),
+                  bearing: 200.00,
+                  target: LatLng(-22.9060, -43.1323),
+                  zoom: 16.5),
               markers: Set.from(jackAllTradesMarkers),
             ),
           ),

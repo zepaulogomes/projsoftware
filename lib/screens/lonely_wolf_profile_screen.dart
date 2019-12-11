@@ -31,6 +31,7 @@ class LonelyWolf extends StatelessWidget {
     return _buildLonenlyWolfScreen(context);
   }
 
+
   Widget _buildLonenlyWolfScreen(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height * 0.58;
@@ -50,8 +51,9 @@ class LonelyWolf extends StatelessWidget {
             height: height,
             child: GoogleMap(
               initialCameraPosition: CameraPosition(
-              target: LatLng(-22.8808,  -43.1043),
-              zoom: 11.0
+              bearing: 200.00,
+              target: LatLng(-22.9060, -43.1323),
+              zoom: 16.5
               ),
               markers: Set.from(lonelyWolfMarkers),
             ),
