@@ -1,40 +1,43 @@
-import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:projsoftware/model/environment_model.dart';
+import 'package:equatable/equatable.dart';
 
-abstract class EnvEvent extends Equatable {
-  const EnvEvent();
+abstract class EnvironmentEvent extends Equatable {
+  const EnvironmentEvent();
 
   @override
   List<Object> get props => [];
 }
 
-class FiltterByTypeEvent extends EnvEvent {
+class GetByTypeEvent extends EnvironmentEvent {
+  final String envType;
 
-  final EnvironmentModel enviromentModel;
-
-  FiltterByTypeEvent({@required this.enviromentModel});
+  GetByTypeEvent({@required this.envType});
 
   @override
-  List<Object> get props => [enviromentModel];
+  List<Object> get props => [envType];
 }
 
-class FiltterByProfileEvent extends EnvEvent {
+class GetByProfileEvent extends EnvironmentEvent {
+  final String envProfile;
 
-  final EnvironmentModel enviromentModel;
-
-  FiltterByProfileEvent({@required this.enviromentModel});
+  GetByProfileEvent({@required this.envProfile});
 
   @override
-  List<Object> get props => [enviromentModel];
+  List<Object> get props => [envProfile];
 }
 
-class NoFiltterEvent extends EnvEvent {
-
-  final EnvironmentModel enviromentModel;
-
-  NoFiltterEvent({@required this.enviromentModel});
+class GetAllEvent extends EnvironmentEvent {
+  GetAllEvent();
 
   @override
-  List<Object> get props => [enviromentModel];
+  List<Object> get props => [];
+}
+
+class GetEnvironmentDetailsEvent extends EnvironmentEvent {
+  final String code;
+
+  GetEnvironmentDetailsEvent({this.code});
+
+  @override
+  List<Object> get props => [code];
 }

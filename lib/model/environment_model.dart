@@ -1,50 +1,53 @@
 import 'package:equatable/equatable.dart';
 import 'package:firebase_database/firebase_database.dart';
 
-class EnvironmentModel extends Equatable{
-  final String _code;
-  final String _name;
-  final String _complement;
-  final String _building;
-  final String _type;
-  final String _latitude;
-  final String _longitude;
-  final String _profile;
+class EnvironmentModel extends Equatable {
+  final String code;
+  final String campus;
+  final String complement;
+  final double latitude;
+  final double longitude;
+  final String name;
+  final String profile;
+  final String building;
+  final String type;
 
-  EnvironmentModel(
-    this._code,
-    this._name,
-    this._complement,
-    this._building,
-    this._type,
-    this._latitude,
-    this._longitude,
-    this._profile,
-  );
+  EnvironmentModel({
+    this.code,
+    this.campus,
+    this.complement,
+    this.latitude,
+    this.longitude,
+    this.name,
+    this.profile,
+    this.building,
+    this.type,
+  });
 
-  factory EnvironmentModel.fromDataSnapshot(DataSnapshot snapshot){
+  factory EnvironmentModel.fromDataSnapshot(DataSnapshot snapshot) {
     return EnvironmentModel(
-      snapshot.key,
-      snapshot.value["campus"],
-      snapshot.value["complemento"],
-      snapshot.value["predio"],
-      snapshot.value["tipo"],
-      snapshot.value["latitude"],
-      snapshot.value["longitude"],
-      snapshot.value["perfil"]
+      code: snapshot.key,
+      campus: snapshot.value["campus"],
+      complement: snapshot.value["complemento"],
+      latitude: snapshot.value["latitude"],
+      longitude: snapshot.value["longitude"],
+      name: snapshot.value["nome"],
+      profile: snapshot.value["perfil"],
+      building: snapshot.value["predio"],
+      type: snapshot.value["tipo"],
     );
   }
 
-
-  String get name => _name;
-  String get code => _code;
-  String get complement => _complement;
-  String get building => _building;
-  String get type => _type;
-  String get latitude => _latitude;
-  String get longitude => _longitude;
-  String get path => _profile;
-  
   @override
-  List<Object> get props => [_code, _name, _complement, _building, _type, _latitude, _longitude, _profile];
+  List<Object> get props => [
+        code,
+        name,
+        complement,
+        building,
+        type,
+        latitude,
+        longitude,
+        profile,
+        campus,
+      ];
 }

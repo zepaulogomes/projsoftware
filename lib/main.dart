@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'injection_container.dart' as ic;
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:projsoftware/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:projsoftware/features/auth/presentation/screens/auth_screen.dart';
-import 'package:projsoftware/features/profile/presentation/bloc/bloc.dart';
-import 'package:projsoftware/features/profile/presentation/screens/quiz_screen.dart';
+import 'package:projsoftware/values/colors.dart';
+import 'package:projsoftware/screens/outgoing_screen.dart';
 import 'package:projsoftware/screens/jack_of_all_trades_screen.dart';
 import 'package:projsoftware/screens/lonely_wolf_profile_screen.dart';
-import 'package:projsoftware/screens/outgoing_screen.dart';
-import 'package:projsoftware/values/colors.dart';
-import 'injection_container.dart' as ic;
+import 'package:projsoftware/features/profile/presentation/bloc/bloc.dart';
+import 'package:projsoftware/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:projsoftware/features/environment/presentation/bloc/bloc.dart';
+import 'package:projsoftware/features/auth/presentation/screens/auth_screen.dart';
+import 'package:projsoftware/features/profile/presentation/screens/quiz_screen.dart';
 
 void main() async {
   await ic.init();
@@ -20,6 +21,9 @@ void main() async {
         ),
         BlocProvider<ProfileBloc>(
           create: (BuildContext context) => ic.sl<ProfileBloc>(),
+        ),
+        BlocProvider<EnvBloc>(
+          create: (BuildContext context) => ic.sl<EnvBloc>(),
         ),
       ],
       child: MyApp(),

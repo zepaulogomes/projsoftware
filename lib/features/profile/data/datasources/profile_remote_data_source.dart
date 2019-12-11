@@ -1,8 +1,7 @@
-import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:projsoftware/core/exception.dart';
 import 'package:projsoftware/model/user_model.dart';
-import 'package:flutter/services.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 // Define interface do Acesso a base de dados remoto
 abstract class ProfileRemoteDataSource {
