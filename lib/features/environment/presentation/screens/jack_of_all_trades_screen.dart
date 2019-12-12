@@ -2,34 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:projsoftware/components/UI/drawer.dart';
 import 'package:projsoftware/components/UI/profiles.dart';
+import 'package:projsoftware/features/environment/data/datasources/env_remote_data_source.dart';
+import 'package:projsoftware/model/environment_model.dart';
+import 'package:projsoftware/values/strings.dart';
 
 class JackOfAllTrades extends StatelessWidget {
   final List<Marker> jackAllTradesMarkers = [];
 
   @override
   Widget build(BuildContext context) {
-    jackAllTradesMarkers.add(
-      Marker(
-        markerId: MarkerId('myMarker'),
-        draggable: false,
-        onTap: () {
-          debugPrint('marker tapped');
-        },
-        position: LatLng(-22.906382, -43.133637),
-        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
-      ),
-    );
-    jackAllTradesMarkers.add(
-      Marker(
-        markerId: MarkerId('myMarker'),
-        draggable: false,
-        onTap: () {
-          debugPrint('marker tapped');
-        },
-        position: LatLng(-22.906797, -43.132859),
-        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
-      ),
-    );
+    EnvRemoteDataSource dataSource = EnvRemoteDataSourceImpl();
+    List<EnvironmentModel> envList =
+        dataSource.getByProfile(StringValues.JACK_OF_ALL_TRADES);
+    for (EnvironmentModel env in envList) {
+      jackAllTradesMarkers.add(env.toMarker());
+    }
+
     return _buildJackOfAllTradesScreen(context);
   }
 
@@ -52,7 +40,9 @@ class JackOfAllTrades extends StatelessWidget {
             height: height,
             child: GoogleMap(
               initialCameraPosition: CameraPosition(
-                  target: LatLng(-22.8808, -43.1043), zoom: 12.0),
+                  bearing: 200.00,
+                  target: LatLng(-22.9060, -43.1323),
+                  zoom: 16.5),
               markers: Set.from(jackAllTradesMarkers),
             ),
           ),

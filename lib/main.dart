@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projsoftware/features/profile/presentation/screens/change_profile_screen.dart';
 import 'features/environment/presentation/screens/jack_of_all_trades_screen.dart';
 import 'features/environment/presentation/screens/lonely_wolf_profile_screen.dart';
 import 'features/environment/presentation/screens/outgoing_screen.dart';
@@ -51,6 +52,7 @@ class MyApp extends StatelessWidget {
         "/lonelyWolf": (BuildContext context) => LonelyWolf(),
         "/outgoing": (BuildContext context) => Outgoing(),
         "/jack": (BuildContext context) => JackOfAllTrades(),
+        "/change": (BuildContext context) => ChangeProfile(),
       },
     );
   }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:projsoftware/screens/change_profile_screen.dart';
 import 'package:projsoftware/values/colors.dart';
 import 'package:projsoftware/values/strings.dart';
 
@@ -111,10 +110,7 @@ class CustomDialog extends StatelessWidget {
                   ),
                   onPressed: () {
                     Navigator.of(context).pop();
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => ChangeProfile()),
-                    );
+                    Navigator.pushReplacementNamed(context, "/change");
 
                   },
                 ),

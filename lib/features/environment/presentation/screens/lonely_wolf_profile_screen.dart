@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:projsoftware/components/UI/drawer.dart';
 import 'package:projsoftware/components/UI/profiles.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:projsoftware/features/environment/data/datasources/env_remote_data_source.dart';
 import 'package:projsoftware/features/environment/presentation/bloc/bloc.dart';
 import 'package:projsoftware/model/environment_model.dart';
+import 'package:projsoftware/values/strings.dart';
 
 class LonelyWolf extends StatefulWidget {
   @override
@@ -13,48 +14,22 @@ class LonelyWolf extends StatefulWidget {
 }
 
 class _StateLonelyWolf extends State<LonelyWolf> {
-  @override
-  void initState() {
-    super.initState();
-  }
 
   final List<Marker> lonelyWolfMarkers = [];
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
-    // OK - Colocar dentro do modelo
-    // Criar bloc listener respondendo stado de poup up
-    // Criar builder com loading e respondendo ao estado de mostrar por perfil
+    EnvRemoteDataSource dataSource = EnvRemoteDataSourceImpl();
+    List<EnvironmentModel> envList = dataSource.getByProfile(StringValues.LONELY_WOLF);
+    for (EnvironmentModel env in envList){
+      lonelyWolfMarkers.add(env.toMarker());
+    }
+    
     return Scaffold(
       key: _scaffoldKey,
-      appBar: AppBar(),
-      body: BlocListener<EnvBloc, EnvironmentState>(
-        listener: (context, state) {
-          if (state is Error) {
-            Scaffold.of(context).showSnackBar(
-              SnackBar(
-                content: Text(state.message),
-              ),
-            );
-          } else if (state is ShowDetailsState) {
-            debugPrint("Abriu detalhe");
-          }
-        },
-        child: BlocBuilder<EnvBloc, EnvironmentState>(
-          builder: (context, state) {
-            if (state is Loading) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            } else if (state is GotByProfileState) {
-              for (EnvironmentModel env in state.envList) {
-                lonelyWolfMarkers.add(env.toMarker(null));
-              }
-            }
-          },
-        ),
-      ),
+      drawer: new AppDrawer(),
+      body: _buildLonenlyWolfScreen(context),
     );
   }
 
@@ -77,7 +52,9 @@ class _StateLonelyWolf extends State<LonelyWolf> {
             height: height,
             child: GoogleMap(
               initialCameraPosition: CameraPosition(
-                  target: LatLng(-22.8808, -43.1043), zoom: 11.0),
+                  bearing: 200.00,
+                  target: LatLng(-22.9060, -43.1323),
+                  zoom: 16.5),
               markers: Set.from(lonelyWolfMarkers),
             ),
           ),

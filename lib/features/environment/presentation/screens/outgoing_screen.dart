@@ -2,15 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:projsoftware/components/UI/drawer.dart';
 import 'package:projsoftware/components/UI/profiles.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:projsoftware/features/environment/data/datasources/env_remote_data_source.dart';
+import 'package:projsoftware/model/environment_model.dart';
+import 'package:projsoftware/values/strings.dart';
 
 class Outgoing extends StatelessWidget {
-
   final List<Marker> outGoingMarkers = [];
-
 
   @override
   Widget build(BuildContext context) {
-    
+    EnvRemoteDataSource dataSource = EnvRemoteDataSourceImpl();
+    List<EnvironmentModel> envList =
+        dataSource.getByProfile(StringValues.OUTGOING);
+    debugPrint(envList == null ? "null" : "ok");
+    for (EnvironmentModel env in envList) {
+      outGoingMarkers.add(env.toMarker());
+    }
 
     return _buildOutgoingScreen(context);
   }
@@ -25,17 +32,16 @@ class Outgoing extends StatelessWidget {
         children: <Widget>[
           GestureDetector(
             child: Profiles.daGalera(),
-            onTap: () {
-              debugPrint("tempo bom");
-            },
           ),
           SizedBox(
             width: width,
             height: height,
             child: GoogleMap(
               initialCameraPosition: CameraPosition(
-                  target: LatLng(-22.8808, -43.1043), zoom: 12.0),
-                                markers: Set.from(outGoingMarkers),
+                  bearing: 200.00,
+                  target: LatLng(-22.9060, -43.1323),
+                  zoom: 16.5),
+              markers: Set.from(outGoingMarkers),
             ),
           ),
         ],

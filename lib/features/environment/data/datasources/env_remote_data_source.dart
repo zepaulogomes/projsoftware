@@ -1,13 +1,14 @@
 
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:projsoftware/core/exception.dart';
 import 'package:projsoftware/model/environment_model.dart';
 
 abstract class EnvRemoteDataSource {
-  Future<List<EnvironmentModel>> getByType(String type);
-  Future<List<EnvironmentModel>> getByProfile(String profile);
-  Future<List<EnvironmentModel>> getAll();
-  Future<EnvironmentModel> getSingleEnvironment(String code);
+  List<EnvironmentModel> getByType(String type);
+  List<EnvironmentModel> getByProfile(String profile);
+  List<EnvironmentModel> getAll();
+  EnvironmentModel getSingleEnvironment(String code);
 }
 
 class EnvRemoteDataSourceImpl implements EnvRemoteDataSource {
@@ -17,11 +18,11 @@ class EnvRemoteDataSourceImpl implements EnvRemoteDataSource {
   EnvRemoteDataSourceImpl();
 
   @override
-  Future<List<EnvironmentModel>> getByType(String type) async {
+  List<EnvironmentModel> getByType(String type) {
     List<EnvironmentModel> environmentList = new List<EnvironmentModel>();
 
     try {
-      List<EnvironmentModel> all = await _populateEnvList();
+      List<EnvironmentModel> all = _populateEnvList();
       for (EnvironmentModel env in all) {
         if (env != null && env.type == type) {
           environmentList.add(env);
@@ -37,11 +38,11 @@ class EnvRemoteDataSourceImpl implements EnvRemoteDataSource {
   }
 
   @override
-  Future<List<EnvironmentModel>> getByProfile(String profile) async {
+  List<EnvironmentModel> getByProfile(String profile) {
     List<EnvironmentModel> environmentList = new List<EnvironmentModel>();
 
     try {
-      List<EnvironmentModel> all = await _populateEnvList();
+      List<EnvironmentModel> all = _populateEnvList();
       for (EnvironmentModel env in all) {
         if (env != null && env.profile == profile) {
           environmentList.add(env);
@@ -52,13 +53,13 @@ class EnvRemoteDataSourceImpl implements EnvRemoteDataSource {
     } catch (e) {
       throw ServerException();
     }
-    return null;
+    return environmentList;
   }
 
   @override
-  Future<List<EnvironmentModel>> getAll() async {
+  List<EnvironmentModel> getAll()  {
     try {
-      List<EnvironmentModel> all = await _populateEnvList();
+      List<EnvironmentModel> all = _populateEnvList();
       return all;
     } on PlatformException catch (e) {
       throw e;
@@ -71,9 +72,9 @@ class EnvRemoteDataSourceImpl implements EnvRemoteDataSource {
   }
 
   @override
-  Future<EnvironmentModel> getSingleEnvironment(String code) async{
+  EnvironmentModel getSingleEnvironment(String code){
     try {
-      List<EnvironmentModel> all = await _populateEnvList();
+      List<EnvironmentModel> all =  _populateEnvList();
       for (EnvironmentModel env in all){
         if (env!=null && env.code == code)
           return env;
@@ -86,7 +87,7 @@ class EnvRemoteDataSourceImpl implements EnvRemoteDataSource {
     return null;
   }
 
-  static Future<List<EnvironmentModel>> _populateEnvList() async {
+  static List<EnvironmentModel> _populateEnvList()  {
     List<EnvironmentModel> envList = new List<EnvironmentModel>();
     envList.add(EnvironmentModel(
         code: "0Ij00HG0Z2Jvr97FG819",

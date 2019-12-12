@@ -16,15 +16,10 @@ class AvailableEnvironment extends StatelessWidget {
         children: <Widget>[
           GestureDetector(
             child: Profiles.ambientesDisponiveis(),
-            onTap: () {               
-              debugPrint("ruim");
-            },
           ),
         ],
       ),
     );
   }
-
-  static ambientesDisponiveis() {}
 }
 

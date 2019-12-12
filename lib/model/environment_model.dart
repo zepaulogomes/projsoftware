@@ -40,14 +40,13 @@ class EnvironmentModel extends Equatable {
     );
   }
 
-  Marker toMarker(Function function) {
+  Marker toMarker() {
     Marker m;
     switch (this.profile) {
       case StringValues.OUTGOING:
         m = Marker(
           markerId: MarkerId(this.code),
           draggable: false,
-          onTap: function,
           position: LatLng(this.latitude, this.longitude),
         );
         break;
@@ -55,7 +54,6 @@ class EnvironmentModel extends Equatable {
         m = Marker(
           markerId: MarkerId(this.code),
           draggable: false,
-          onTap: function,
           position: LatLng(this.latitude, this.longitude),
           icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
         );
@@ -64,7 +62,6 @@ class EnvironmentModel extends Equatable {
         m = Marker(
           markerId: MarkerId(this.code),
           draggable: false,
-          onTap: function,
           position: LatLng(this.latitude, this.longitude),
           icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
         );
