@@ -1,16 +1,13 @@
-# projsoftware
+# EstudUFF 
 
-A new Flutter project.
+O EstudUff é um aplicativo que oferece aos frequentadores do campus Praia Vermelha um guia de ambientes de estudos disponíveis dentro dele, de acordo com características específicas que atendem a diferentes perfis de usuários.
 
-## Getting Started
+## Encontre o melhor lugar para o seu perfil
 
-This project is a starting point for a Flutter application.
+Os perfis de usuário foram elaborados para criar uma seleção mais acurada no que se refere à preferências comuns dos frequentadores do campus. Para defini-los, realizamos um estudo de campo por meio de entrevistas com alunos de diferentes cursos ministrados dentro da Praia Vermelha, questionário e observação simples dos locais de estudos mais frequentados no campus, na qual o observador não interage com os observados. Através da análise dos resultados desse estudo, foram criados três tipos de perfis de usuários: 
 
-A few resources to get you started if this is your first Flutter project:
+* **Lobo Solitário:** para aqueles que gostam de estudar sozinho
+* **Da Galera:** para aqueles que preferem estudar em grupo
+* **Não tem tempo ruim:** destinado àqueles que só querem um espaço para estudar e não se importam com fatores extras
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+!["Logo EstudUFF"](https://github.com/josepmg/projsoftware/blob/master/assets/images/logo.png)
