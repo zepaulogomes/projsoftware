@@ -14,7 +14,6 @@ class Outgoing extends StatelessWidget {
     EnvRemoteDataSource dataSource = EnvRemoteDataSourceImpl();
     List<EnvironmentModel> envList =
         dataSource.getByProfile(StringValues.OUTGOING);
-    debugPrint(envList == null ? "null" : "ok");
     for (EnvironmentModel env in envList) {
       outGoingMarkers.add(env.toMarker());
     }

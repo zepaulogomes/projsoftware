@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:projsoftware/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:projsoftware/features/environment/presentation/screens/available_environments_screen.dart';
-import 'package:projsoftware/features/environment/presentation/screens/lonely_wolf_profile_screen.dart';
 import 'package:projsoftware/features/environment/presentation/screens/outgoing_screen.dart';
 import 'package:projsoftware/features/profile/presentation/bloc/bloc.dart'
     as profile;
