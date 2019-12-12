@@ -7,24 +7,11 @@ class Outgoing extends StatelessWidget {
 
   final List<Marker> outGoingMarkers = [];
 
+
   @override
   Widget build(BuildContext context) {
-    outGoingMarkers.add(Marker(
-      markerId: MarkerId('myMarker' ),
-      draggable: false,
-      onTap: () {
-        debugPrint('marker tapped');
-      },
-      position: LatLng(-22.906382, -43.133637)
-      ));
-      outGoingMarkers.add(Marker(
-      markerId: MarkerId('myMarker' ),
-      draggable: false,
-      onTap: () {
-        debugPrint('marker tapped');
-      },
-      position: LatLng(-22.906797, -43.132859)
-      ));
+    
+
     return _buildOutgoingScreen(context);
   }
 

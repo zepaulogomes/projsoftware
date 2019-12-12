@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:projsoftware/components/UI/drawer.dart';
@@ -47,8 +49,8 @@ class _FilterByTypeScreenState extends State<FilterByTypeScreen> {
                 SizedBox(
                   height: 20,
                 ),
-                TextFieldInput.texto(
-                    StringValues.FILTER_BY_TYPE_PLACEHOLDER, null, () {}),
+                // TextFieldInput.texto( 
+                //     StringValues.FILTER_BY_TYPE_PLACEHOLDER, null, () {}),
                 SizedBox(
                   height: 20,
                 ),

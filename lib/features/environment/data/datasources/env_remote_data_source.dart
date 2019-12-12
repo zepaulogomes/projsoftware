@@ -14,9 +14,7 @@ class EnvRemoteDataSourceImpl implements EnvRemoteDataSource {
   Future<List<EnvironmentModel>> envList;
 
   // Construtor com dados padrões
-  EnvRemoteDataSourceImpl() {
-    this.envList = _populateEnvList();
-  }
+  EnvRemoteDataSourceImpl();
 
   @override
   Future<List<EnvironmentModel>> getByType(String type) async {

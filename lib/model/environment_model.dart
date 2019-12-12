@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:projsoftware/values/strings.dart';
 
 class EnvironmentModel extends Equatable {
   final String code;
@@ -36,6 +38,40 @@ class EnvironmentModel extends Equatable {
       building: snapshot.value["predio"],
       type: snapshot.value["tipo"],
     );
+  }
+
+  Marker toMarker(Function function) {
+    Marker m;
+    switch (this.profile) {
+      case StringValues.OUTGOING:
+        m = Marker(
+          markerId: MarkerId(this.code),
+          draggable: false,
+          onTap: function,
+          position: LatLng(this.latitude, this.longitude),
+        );
+        break;
+      case StringValues.LONELY_WOLF:
+        m = Marker(
+          markerId: MarkerId(this.code),
+          draggable: false,
+          onTap: function,
+          position: LatLng(this.latitude, this.longitude),
+          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+        );
+        break;
+      case StringValues.JACK_OF_ALL_TRADES:
+        m = Marker(
+          markerId: MarkerId(this.code),
+          draggable: false,
+          onTap: function,
+          position: LatLng(this.latitude, this.longitude),
+          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
+        );
+        break;
+    }
+
+    return m;
   }
 
   @override

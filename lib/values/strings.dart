@@ -1,8 +1,8 @@
 class StringValues {
   // PROFILE NAMES
-  static final LONELY_WOLF = "Lobo solitário";
-  static final JACK_OF_ALL_TRADES = "Não tem tempo ruim";
-  static final OUTGOING = "Da galera";
+  static const LONELY_WOLF = "Lobo solitário";
+  static const JACK_OF_ALL_TRADES = "Não tem tempo ruim";
+  static const OUTGOING = "Da galera";
 
   // Drawer
   static final GREETINGS = 'Olá, ';
