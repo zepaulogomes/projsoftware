@@ -1,4 +1,4 @@
-# EstudUFF 
+!["Logo EstudUFF"](https://github.com/josepmg/projsoftware/blob/master/assets/images/logo.png)
 
 O EstudUff é um aplicativo que oferece aos frequentadores do campus Praia Vermelha um guia de ambientes de estudos disponíveis dentro dele, de acordo com características específicas que atendem a diferentes perfis de usuários.
 
@@ -10,4 +10,4 @@ Os perfis de usuário foram elaborados para criar uma seleção mais acurada no 
 * **Da Galera:** para aqueles que preferem estudar em grupo
 * **Não tem tempo ruim:** destinado àqueles que só querem um espaço para estudar e não se importam com fatores extras
 
-!["Logo EstudUFF"](https://github.com/josepmg/projsoftware/blob/master/assets/images/logo.png)
+
