@@ -4,14 +4,24 @@ import 'package:projsoftware/components/UI/profiles.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class Outgoing extends StatelessWidget {
-
   final List<Marker> outGoingMarkers = [];
-
 
   @override
   Widget build(BuildContext context) {
-    
-
+    outGoingMarkers.add(Marker(
+        markerId: MarkerId('myMarker'),
+        draggable: false,
+        onTap: () {
+          debugPrint('marker tapped');
+        },
+        position: LatLng(-22.906382, -43.133637)));
+    outGoingMarkers.add(Marker(
+        markerId: MarkerId('myMarker'),
+        draggable: false,
+        onTap: () {
+          debugPrint('marker tapped');
+        },
+        position: LatLng(-22.906797, -43.132859)));
     return _buildOutgoingScreen(context);
   }
 
@@ -34,8 +44,10 @@ class Outgoing extends StatelessWidget {
             height: height,
             child: GoogleMap(
               initialCameraPosition: CameraPosition(
-                  target: LatLng(-22.8808, -43.1043), zoom: 12.0),
-                                markers: Set.from(outGoingMarkers),
+                  bearing: 200.00,
+                  target: LatLng(-22.9060, -43.1323),
+                  zoom: 16.5),
+              markers: Set.from(outGoingMarkers),
             ),
           ),
         ],

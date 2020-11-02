@@ -97,24 +97,33 @@ class _QuizScreenState extends State<QuizScreen> {
           SizedBox(
             height: 10,
           ),
-          DropdownButton<String>(
-            hint: Text(StringValues.PLACEHOLDER_OPTION),
-            value: _quiet == null
-                ? null
-                : StringValues.QUIZ_ANSWERS_OPTIONS[_quiet],
-            icon: Icon(Icons.arrow_drop_down),
-            onChanged: (String valor) {
-              setState(() {
-                _quiet = StringValues.QUIZ_ANSWERS_OPTIONS.indexOf(valor);
-              });
-            },
-            items: StringValues.QUIZ_ANSWERS_OPTIONS
-                .map<DropdownMenuItem<String>>((String valor) {
-              return DropdownMenuItem<String>(
-                value: valor,
-                child: Text(valor),
-              );
-            }).toList(),
+          Container(
+            padding: EdgeInsets.fromLTRB(10.0, 15.0, 10.0, 15.0),
+            decoration: ShapeDecoration(
+                shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                        width: 1, style: BorderStyle.solid, color: Colors.grey),
+                    borderRadius: BorderRadius.all(Radius.circular(5.0)))),
+            child: DropdownButtonFormField<String>(
+              decoration: InputDecoration.collapsed(
+                  hintText: StringValues.PLACEHOLDER_OPTION,
+                  border: InputBorder.none),
+              value: _quiet == null
+                  ? null
+                  : StringValues.QUIZ_ANSWERS_OPTIONS[_quiet],
+              onChanged: (String valor) {
+                setState(() {
+                  _quiet = StringValues.QUIZ_ANSWERS_OPTIONS.indexOf(valor);
+                });
+              },
+              items: StringValues.QUIZ_ANSWERS_OPTIONS
+                  .map<DropdownMenuItem<String>>((String valor) {
+                return DropdownMenuItem<String>(
+                  value: valor,
+                  child: Text(valor),
+                );
+              }).toList(),
+            ),
           ),
           SizedBox(
             height: 30,
@@ -130,24 +139,33 @@ class _QuizScreenState extends State<QuizScreen> {
           SizedBox(
             height: 10,
           ),
-          DropdownButton<String>(
-            hint: Text(StringValues.PLACEHOLDER_OPTION),
-            value: _privacy == null
-                ? null
-                : StringValues.QUIZ_ANSWERS_OPTIONS[_privacy],
-            icon: Icon(Icons.arrow_drop_down),
-            onChanged: (String valor) {
-              setState(() {
-                _privacy = StringValues.QUIZ_ANSWERS_OPTIONS.indexOf(valor);
-              });
-            },
-            items: StringValues.QUIZ_ANSWERS_OPTIONS
-                .map<DropdownMenuItem<String>>((String valor) {
-              return DropdownMenuItem<String>(
-                value: valor,
-                child: Text(valor),
-              );
-            }).toList(),
+          Container(
+            padding: EdgeInsets.fromLTRB(10.0, 15.0, 10.0, 15.0),
+            decoration: ShapeDecoration(
+                shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                        width: 1, style: BorderStyle.solid, color: Colors.grey),
+                    borderRadius: BorderRadius.all(Radius.circular(5.0)))),
+            child: DropdownButtonFormField<String>(
+              decoration: InputDecoration.collapsed(
+                  hintText: StringValues.PLACEHOLDER_OPTION,
+                  border: InputBorder.none),
+              value: _privacy == null
+                  ? null
+                  : StringValues.QUIZ_ANSWERS_OPTIONS[_privacy],
+              onChanged: (String valor) {
+                setState(() {
+                  _privacy = StringValues.QUIZ_ANSWERS_OPTIONS.indexOf(valor);
+                });
+              },
+              items: StringValues.QUIZ_ANSWERS_OPTIONS
+                  .map<DropdownMenuItem<String>>((String valor) {
+                return DropdownMenuItem<String>(
+                  value: valor,
+                  child: Text(valor),
+                );
+              }).toList(),
+            ),
           ),
           SizedBox(
             height: 30,
@@ -164,24 +182,39 @@ class _QuizScreenState extends State<QuizScreen> {
             height: 10,
           ),
           // TextFieldInput.texto(StringValues.PLACEHOLDER_OPTION, Icons.arrow_drop_down),
-          DropdownButton<String>(
-            hint: Text(StringValues.PLACEHOLDER_OPTION),
-            value: _behavior == null
-                ? null
-                : StringValues.QUIZ_ANSWERS_OPTIONS[_behavior],
-            icon: Icon(Icons.arrow_drop_down),
-            onChanged: (String valor) {
-              setState(() {
-                _behavior = StringValues.QUIZ_ANSWERS_OPTIONS.indexOf(valor);
-              });
-            },
-            items: StringValues.QUIZ_ANSWERS_OPTIONS
-                .map<DropdownMenuItem<String>>((String valor) {
-              return DropdownMenuItem<String>(
-                value: valor,
-                child: Text(valor),
-              );
-            }).toList(),
+          Container(
+            padding: EdgeInsets.fromLTRB(10.0, 15.0, 10.0, 15.0),
+            decoration: ShapeDecoration(
+                shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                        width: 1, style: BorderStyle.solid, color: Colors.grey),
+                    borderRadius: BorderRadius.all(Radius.circular(5.0)))),
+            child: DropdownButtonFormField<String>(
+              decoration: InputDecoration.collapsed(
+                  hintText: StringValues.PLACEHOLDER_OPTION,
+                  border: InputBorder.none),
+              value: _behavior == null
+                  ? null
+                  : StringValues.QUIZ_ANSWERS_OPTIONS[_behavior],
+              onChanged: (String valor) {
+                setState(() {
+                  _behavior = StringValues.QUIZ_ANSWERS_OPTIONS.indexOf(valor);
+                });
+              },
+              items: StringValues.QUIZ_ANSWERS_OPTIONS
+                  .map<DropdownMenuItem<String>>((String valor) {
+                return DropdownMenuItem<String>(
+                  value: valor,
+                  child: Text(
+                    valor,
+                    style: TextStyle(
+                        inherit: false,
+                        color: Colors.black,
+                        decorationColor: Colors.white),
+                  ),
+                );
+              }).toList(),
+            ),
           ),
           SizedBox(
             height: 30,

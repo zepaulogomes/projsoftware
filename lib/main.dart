@@ -10,6 +10,7 @@ import 'package:projsoftware/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:projsoftware/features/environment/presentation/bloc/bloc.dart';
 import 'package:projsoftware/features/auth/presentation/screens/auth_screen.dart';
 import 'package:projsoftware/features/profile/presentation/screens/quiz_screen.dart';
+import 'injection_container.dart' as ic;
 
 void main() async {
   await ic.init();
