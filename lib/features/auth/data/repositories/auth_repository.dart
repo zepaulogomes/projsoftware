@@ -36,15 +36,15 @@ class AuthRepositoryImpl implements AuthRepository {
         localDataSource.cacheUserToken(userModel.code);
         localDataSource.cacheUserName(userModel.name);
         localDataSource.cacheUserCourse(userModel.course);
-        if (userModel.profile != null){
+        if (userModel.profile != null) {
           localDataSource.cacheUserProfile(userModel.profile);
         } else {
-           return Left(NullProfileFailure());
+          return Left(NullProfileFailure());
         }
-        
+
         return Right(userModel);
       } on PlatformException catch (e) {
-        return Left(PlatformFailure(message: e.message)); 
+        return Left(PlatformFailure(message: e.message));
       } catch (e) {
         return Left(ServerFailure());
       }
@@ -79,9 +79,8 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Either<Failure, void>> signOut() async {
     try {
-      await remoteDataSource.signOut();
       await localDataSource.cleanCache();
-      return Right(Void());
+      return Right(await remoteDataSource.signOut());
     } on PlatformException catch (e) {
       return Left(PlatformFailure(message: e.message));
     } on CacheException {

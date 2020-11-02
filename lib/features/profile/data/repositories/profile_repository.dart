@@ -58,9 +58,9 @@ class ProfileRepositoryImpl implements ProfileRepository {
       if (userToken != null) {
         if (userProfile != null) {
           await localDataSource.cacheUserProfile(userProfile);
-          await remoteDataSource.setProfile(userToken, userProfile);
 
-          return Right(Void());
+          return Right(
+              await remoteDataSource.setProfile(userToken, userProfile));
         } else {
           return Left(NullProfileFailure());
         }
