@@ -25,3 +25,5 @@ class NoInternetConnectionFailure extends Failure {}
 class NullProfileFailure extends Failure{}
 
 class InvalidTokenFailure extends Failure{}
+
+class NullEnvironmentFailure extends Failure{}

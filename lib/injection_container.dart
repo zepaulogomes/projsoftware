@@ -3,18 +3,22 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:projsoftware/core/network_info.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:projsoftware/features/auth/data/datasources/auth_local_data_source.dart';
-import 'package:projsoftware/features/auth/data/datasources/auth_remote_data_source.dart';
-import 'package:projsoftware/features/auth/data/repositories/auth_repository.dart';
-import 'package:projsoftware/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:projsoftware/features/profile/data/datasources/profile_remote_data_source.dart';
-import 'package:projsoftware/features/profile/data/repositories/profile_repository.dart';
-import 'package:projsoftware/features/profile/presentation/bloc/bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'features/profile/data/datasources/profile_local_data_source.dart';
+import 'package:projsoftware/features/profile/presentation/bloc/bloc.dart';
+import 'package:projsoftware/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:projsoftware/features/environment/presentation/bloc/bloc.dart';
+import 'package:projsoftware/features/auth/data/repositories/auth_repository.dart';
+import 'package:projsoftware/features/profile/data/repositories/profile_repository.dart';
+import 'package:projsoftware/features/auth/data/datasources/auth_local_data_source.dart';
+import 'package:projsoftware/features/environment/data/repositories/env_repository.dart';
+import 'package:projsoftware/features/auth/data/datasources/auth_remote_data_source.dart';
+import 'package:projsoftware/features/environment/data/datasources/env_local_data_source.dart';
+import 'package:projsoftware/features/environment/data/datasources/env_remote_data_source.dart';
+import 'package:projsoftware/features/profile/data/datasources/profile_remote_data_source.dart';
 
 import 'features/environment/data/datasources/env_remote_data_source.dart';
 import 'features/environment/data/repositories/env_repository.dart';
-import 'features/profile/data/datasources/profile_local_data_source.dart';
 
 final sl = GetIt.instance;
 
@@ -31,6 +35,12 @@ Future<void> init() async {
     ),
   );
 
+  sl.registerFactory(
+    () => EnvBloc(
+      envRepository: sl(),
+    ),
+  );
+
   sl.registerLazySingleton<AuthRepository>(
     () => AuthRepositoryImpl(
       localDataSource: sl(),
@@ -41,6 +51,14 @@ Future<void> init() async {
 
   sl.registerLazySingleton<ProfileRepository>(
     () => ProfileRepositoryImpl(
+      localDataSource: sl(),
+      remoteDataSource: sl(),
+      networkInfo: sl(),
+    ),
+  );
+
+  sl.registerLazySingleton<EnvRepository>(
+    () => EnvRepositoryImpl(
       localDataSource: sl(),
       remoteDataSource: sl(),
       networkInfo: sl(),
@@ -69,7 +87,11 @@ Future<void> init() async {
   );
 
   sl.registerLazySingleton<EnvRemoteDataSource>(
-    () => EnvRemoteDataSourceImpl(firebaseAuth: sl(), firebaseDatabase: sl()),
+    () => EnvRemoteDataSourceImpl(),
+  );
+
+  sl.registerLazySingleton<EnvRemoteDataSource>(
+    () => EnvRemoteDataSourceImpl(),
   );
 
   sl.registerLazySingleton<AuthLocalDataSource>(
@@ -80,6 +102,12 @@ Future<void> init() async {
 
   sl.registerLazySingleton<ProfileLocalDataSource>(
     () => ProfileLocalDataSourceImpl(
+      sharedPreferences: sl(),
+    ),
+  );
+
+  sl.registerLazySingleton<EnvLocalDataSource>(
+    () => EnvLocalDataSourceImpl(
       sharedPreferences: sl(),
     ),
   );
